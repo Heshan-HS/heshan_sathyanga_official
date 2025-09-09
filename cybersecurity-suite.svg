@@ -1,0 +1,50 @@
+<svg width="400" height="250" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="shield" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="250" fill="url(#bg)"/>
+  <!-- Matrix grid -->
+  <g opacity="0.25" stroke="#94a3b8" stroke-width="0.5">
+    <path d="M20 40h360M20 70h360M20 100h360M20 130h360M20 160h360M20 190h360"/>
+    <path d="M50 30v190M100 30v190M150 30v190M200 30v190M250 30v190M300 30v190M350 30v190"/>
+  </g>
+  <!-- Shield -->
+  <g transform="translate(130,60)">
+    <path d="M70 0l60 20v55c0 40-35 65-60 75-25-10-60-35-60-75V20L70 0z" fill="url(#shield)" stroke="#1d4ed8" stroke-width="2"/>
+    <path d="M70 28a35 35 0 1035 35 35 35 0 00-35-35z" fill="#0ea5e9" opacity="0.25"/>
+    <path d="M55 65l10 10 20-25" stroke="#ecfeff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <!-- Code window -->
+  <rect x="30" y="30" width="150" height="90" rx="8" fill="#0b1220" stroke="#334155"/>
+  <circle cx="45" cy="45" r="3" fill="#ef4444"/>
+  <circle cx="55" cy="45" r="3" fill="#f59e0b"/>
+  <circle cx="65" cy="45" r="3" fill="#10b981"/>
+  <rect x="40" y="55" width="120" height="6" rx="3" fill="#1f2937"/>
+  <rect x="40" y="66" width="100" height="6" rx="3" fill="#1f2937"/>
+  <rect x="40" y="77" width="80" height="6" rx="3" fill="#1f2937"/>
+  <rect x="40" y="88" width="110" height="6" rx="3" fill="#1f2937"/>
+  <!-- Locks -->
+  <g transform="translate(320,40)">
+    <rect x="0" y="12" width="40" height="34" rx="6" fill="#0b1220" stroke="#334155"/>
+    <rect x="10" y="18" width="20" height="16" rx="3" fill="#1d4ed8"/>
+    <rect x="12" y="10" width="16" height="10" rx="8" fill="#0b1220" stroke="#334155"/>
+  </g>
+  <g transform="translate(320,100)">
+    <rect x="0" y="12" width="40" height="34" rx="6" fill="#0b1220" stroke="#334155"/>
+    <rect x="10" y="18" width="20" height="16" rx="3" fill="#22c55e"/>
+    <rect x="12" y="10" width="16" height="10" rx="8" fill="#0b1220" stroke="#334155"/>
+  </g>
+  <!-- Dots -->
+  <g fill="#38bdf8" opacity="0.6">
+    <circle cx="60" cy="200" r="2"/>
+    <circle cx="90" cy="210" r="3"/>
+    <circle cx="330" cy="200" r="2"/>
+  </g>
+</svg>

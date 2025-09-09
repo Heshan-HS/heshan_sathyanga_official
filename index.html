@@ -1,0 +1,2048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heshan Sathyanga — Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Spline Web Component -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.40/build/spline-viewer.js"></script>
+</head>
+<body class="sidebar-layout">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-container">
+            <div class="loading-logo">
+                <i class="fas fa-code-branch"></i>
+                <span>Heshan Sathyanga</span>
+            </div>
+            <div class="loading-animation">
+                <div class="loading-spinner">
+                    <div class="spinner-ring"></div>
+                    <div class="spinner-ring"></div>
+                    <div class="spinner-ring"></div>
+                </div>
+                <div class="loading-text">
+                    <span class="loading-message">Initializing Experience...</span>
+                    <div class="loading-progress">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                    <span class="loading-percentage" id="loading-percentage">0%</span>
+                </div>
+            </div>
+            <div class="loading-particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home"><i class="fas fa-code-branch"></i> <span>Heshan Sathyanga</span></a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#company" class="nav-link"><i class="fas fa-building"></i><span>Company</span></a></li>
+                <li class="nav-item"><a href="#about" class="nav-link"><i class="fas fa-user"></i><span>About</span></a></li>
+                <li class="nav-item"><a href="#skills" class="nav-link"><i class="fas fa-code"></i><span>Skills</span></a></li>
+                <li class="nav-item"><a href="#portfolio" class="nav-link"><i class="fas fa-folder-open"></i><span>Projects</span></a></li>
+                <li class="nav-item"><a href="#experience" class="nav-link"><i class="fas fa-briefcase"></i><span>Experience</span></a></li>
+                <li class="nav-item"><a href="#education" class="nav-link"><i class="fas fa-graduation-cap"></i><span>Education</span></a></li>
+                <li class="nav-item"><a href="#testimonials" class="nav-link"><i class="fas fa-comments"></i><span>Testimonials</span></a></li>
+                <li class="nav-item"><a href="#faq" class="nav-link"><i class="fas fa-question-circle"></i><span>FAQ</span></a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i><span>Contact</span></a></li>
+                <!-- Mobile-only Download CV button; styled via .mobile-signup rules -->
+                <li class="mobile-signup">
+                    <a href="resume.pdf" class="btn-signup-mobile" download>
+                        <i class="fas fa-download" aria-hidden="true"></i>
+                        <span style="margin-left:8px;">Download CV</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="resume.pdf" class="btn btn-signin" download>
+                    <i class="fas fa-download" aria-hidden="true"></i>
+                    <span class="btn-label">Download CV</span>
+                </a>
+            </div>
+            <div class="nav-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="type" data-text="Hi, I'm "></span>
+                    <span class="gradient-text"><span class="type" data-text="Full-Stack Developer"></span></span>
+                </h1>
+                <p class="hero-subtitle">
+                    Crafting scalable, elegant, and performant web applications
+                </p>
+                <p class="hero-description">
+                    I build modern digital experiences using cutting-edge technologies. Explore my projects, skills, and experience—and let's create something amazing together.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#portfolio" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="spline-wrapper">
+                    <spline-viewer
+                        loading-anim
+                        class="spline-canvas"
+                        style="background: transparent"
+                        url="https://prod.spline.design/VK7Onj47gjerxSxX/scene.splinecode">
+                    </spline-viewer>
+                    <div class="hire-me-button">
+                        <a href="#contact" class="btn-hire">
+                            <i class="fas fa-rocket"></i>
+                            Hire Me
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About <span class="highlight-text">Me</span></h2>
+                <p class="section-subtitle">Passionate full-stack developer crafting digital experiences</p>
+            </div>
+            <div class="about-content">
+                <div class="about-intro">
+                    <div class="intro-text">
+                        <h3>Hi, I'm Heshan Sathyanga</h3>
+                        <p>A passionate full-stack developer with expertise in modern web technologies. I love creating scalable, user-focused applications that solve real-world problems. With a strong foundation in both frontend and backend development, I bring ideas to life through clean code and thoughtful design.</p>
+                        <p>When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community.</p>
+                    </div>
+                    <div class="intro-image">
+                        <div class="profile-image">
+                            <img src="file_00000000b7f861f998b2075b3e3f4e84 (1).png" alt="Heshan Sathyanga - Full Stack Developer" />
+                        </div>
+                    </div>
+                </div>
+                  <div class="about-stats">
+                    <div class="stats-container">
+                        <div class="stat-card">
+                            <div class="stat-number">25+</div>
+                            <div class="stat-label">Projects Completed</div>
+                            <div class="stat-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Happy Clients</div>
+                            <div class="stat-icon">
+                                <i class="fas fa-smile"></i>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">3+</div>
+                            <div class="stat-label">Years Experience</div>
+                            <div class="stat-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Commitment</div>
+                            <div class="stat-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-features">
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fas fa-code"></i>
+                            <span>Clean Code</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Responsive Design</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Secure Development</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Timely Delivery</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-users"></i>
+                            <span>Team Collaboration</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Performance Optimization</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Section -->
+    <section id="company" class="company-showcase">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Currently Working <span class="highlight-text">At</span></h2>
+                <p class="section-subtitle">Proud to be part of an innovative software development team</p>
+            </div>
+            
+            <div class="company-content">
+                <div class="company-card">
+                    <div class="company-header">
+                        <div class="company-logo">
+                            <div class="logo-placeholder">
+                                <i class="fas fa-building"></i>
+                            </div>
+                        </div>
+                        <div class="company-info">
+                            <h3 class="company-name">SoftCode</h3>
+                            <p class="company-role">Senior Full-Stack Developer</p>
+                            <div class="company-duration">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>2022 - Present</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="company-description">
+                        <p>Transforming ideas into powerful digital solutions. We empower businesses with cutting-edge software that drives innovation, efficiency, and growth.</p>
+                    </div>
+                    
+                    <!-- Expertise badges row -->
+                    <div class="company-expertise">
+                        <span class="expertise-badge">Full-Stack Development</span>
+                        <span class="expertise-badge">Mobile Apps</span>
+                        <span class="expertise-badge">Cloud Architecture</span>
+                        <span class="expertise-badge">AI & Machine Learning</span>
+                    </div>
+                    
+                    <div class="company-highlights">
+                        <div class="highlight-item">
+                            <i class="fas fa-users"></i>
+                            <span>50+ Team Members</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-globe"></i>
+                            <span>Global Clients</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-award"></i>
+                            <span>Industry Leader</span>
+                        </div>
+                    </div>
+                    
+                    <div class="company-actions">
+                        <a href="https://heshan-hs.github.io/softwarecompany/" target="_blank" class="company-website-btn">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>Visit Company Website</span>
+                        </a>
+                        <div class="company-tech-stack">
+                            <span class="tech-badge">Web Development</span>
+                            <span class="tech-badge">Mobile Development</span>
+                            <span class="tech-badge">Cloud Solutions</span>
+                            <span class="tech-badge">Database Management</span>
+                            <span class="tech-badge">Security Solutions</span>
+                            <span class="tech-badge">24/7 Support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">My <span class="highlight-text">Skills & Tools</span></h2>
+                <p class="section-subtitle">Technologies I use to build robust, user-focused products</p>
+            </div>
+            
+            <!-- Skill Filter Tabs -->
+            <div class="skill-filters">
+                <button class="filter-btn active" data-filter="all">All Skills</button>
+                <button class="filter-btn" data-filter="frontend">Frontend</button>
+                <button class="filter-btn" data-filter="backend">Backend</button>
+                <button class="filter-btn" data-filter="tools">Tools</button>
+                <button class="filter-btn" data-filter="design">Design</button>
+            </div>
+            
+            <!-- Skills Grid -->
+            <div class="skills-grid">
+                <!-- Frontend Technologies -->
+                <div class="skill-card" data-category="frontend">
+                    <div class="skill-icon html">
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <h3>HTML5</h3>
+                </div>
+                
+                <div class="skill-card" data-category="frontend">
+                    <div class="skill-icon css">
+                        <i class="fab fa-css3-alt"></i>
+                    </div>
+                    <h3>CSS3</h3>
+                </div>
+                
+                <div class="skill-card" data-category="frontend">
+                    <div class="skill-icon javascript">
+                        <span class="js-text">JS</span>
+                    </div>
+                    <h3>JavaScript</h3>
+                </div>
+                
+                <div class="skill-card" data-category="frontend">
+                    <div class="skill-icon react">
+                        <i class="fab fa-react"></i>
+                    </div>
+                    <h3>React</h3>
+                </div>
+                
+                <div class="skill-card" data-category="frontend">
+                    <div class="skill-icon typescript">
+                        <span class="ts-text">TS</span>
+                    </div>
+                    <h3>TypeScript</h3>
+                </div>
+                
+                <!-- Backend Technologies -->
+                <div class="skill-card" data-category="backend">
+                    <div class="skill-icon nodejs">
+                        <i class="fab fa-node-js"></i>
+                    </div>
+                    <h3>Node.js</h3>
+                </div>
+                
+                <div class="skill-card" data-category="backend">
+                    <div class="skill-icon sql">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>SQL</h3>
+                </div>
+                
+                <div class="skill-card" data-category="backend">
+                    <div class="skill-icon mongodb">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>MongoDB</h3>
+                </div>
+                
+                <!-- Tools -->
+                <div class="skill-card" data-category="tools">
+                    <div class="skill-icon git">
+                        <i class="fab fa-git-alt"></i>
+                    </div>
+                    <h3>Git</h3>
+                </div>
+                
+                <div class="skill-card" data-category="tools">
+                    <div class="skill-icon docker">
+                        <i class="fab fa-docker"></i>
+                    </div>
+                    <h3>Docker</h3>
+                </div>
+                
+                <!-- Design -->
+                <div class="skill-card" data-category="design">
+                    <div class="skill-icon figma">
+                        <i class="fab fa-figma"></i>
+                    </div>
+                    <h3>Figma</h3>
+                </div>
+                
+                <div class="skill-card" data-category="design">
+                    <div class="skill-icon photoshop">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Photoshop</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">My <span class="highlight-text">Projects</span></h2>
+                <p class="section-subtitle">Showcasing my latest work and development projects</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img
+                            class="portfolio-img"
+                            src="Screenshot 2025-09-09 220105.png"
+                            srcset=""
+                            sizes="100vw"
+                            alt="SoftCode – Software Company website preview"
+                            loading="lazy"
+                            decoding="async"
+                            width="1400" height="800"
+                            referrerpolicy="no-referrer"
+                            onerror="this.onerror=null; this.src='ecommerce-platform.svg'; this.srcset='';"
+                        >
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-overlay-content">
+                                <div class="portfolio-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-value">98%</span>
+                                        <span class="stat-label">Performance</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-value">50K+</span>
+                                        <span class="stat-label">Users</span>
+                                    </div>
+                                </div>
+                                <a href="https://heshan-hs.github.io/softwarecompany/" target="_blank" rel="noopener" class="portfolio-btn">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-header">
+                            <h3>SoftCode – Software Company</h3>
+                            <div class="portfolio-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p>Next-level software solutions website showcasing services, expertise, and a modern company brand.</p>
+                        <div class="portfolio-tags">
+                            <span class="tech-tag">Web</span>
+                            <span class="tech-tag">Mobile</span>
+                            <span class="tech-tag">Cloud</span>
+                        </div>
+                        <div class="portfolio-footer">
+                            <div class="project-duration">
+                                <i class="fas fa-clock"></i>
+                                <span>3 months</span>
+                            </div>
+                            <div class="project-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-actions">
+                            <a class="project-cta" href="https://heshan-hs.github.io/softwarecompany/" target="_blank" rel="noopener">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Visit Project</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img
+                            class="portfolio-img"
+                            src="Screenshot 2025-09-09 220641.png"
+                            srcset=""
+                            sizes="100vw"
+                            alt="MovieVerse Hub website preview"
+                            loading="lazy"
+                            width="1200" height="750"
+                            referrerpolicy="no-referrer"
+                            onerror="this.onerror=null; this.src='analytics-dashboard.svg'; this.srcset='';"
+                        >
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-overlay-content">
+                                <div class="portfolio-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-value">95%</span>
+                                        <span class="stat-label">Accuracy</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-value">24/7</span>
+                                        <span class="stat-label">Uptime</span>
+                                    </div>
+                                </div>
+                                <a href="https://heshan-hs.github.io/movieversehub/index.html" target="_blank" rel="noopener" class="portfolio-btn">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-header">
+                            <h3>MovieVerse Hub</h3>
+                            <div class="portfolio-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p>Discover movies, explore genres, and watch trailers in a clean, responsive UI.</p>
+                        <div class="portfolio-tags">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="portfolio-footer">
+                            <div class="project-duration">
+                                <i class="fas fa-clock"></i>
+                                <span>4 months</span>
+                            </div>
+                            <div class="project-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-actions">
+                            <a class="project-cta" href="https://heshan-hs.github.io/movieversehub/index.html" target="_blank" rel="noopener">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Visit Project</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img
+                            class="portfolio-img"
+                            src="Screenshot 2025-09-09 220801.png"
+                            srcset=""
+                            sizes="100vw"
+                            alt="Bugatti Official Concept website preview"
+                            loading="lazy"
+                            width="1200" height="750"
+                            referrerpolicy="no-referrer"
+                            onerror="this.onerror=null; this.src='learning-management.svg'; this.srcset='';"
+                        >
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-overlay-content">
+                                <div class="portfolio-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-value">10K+</span>
+                                        <span class="stat-label">Students</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-value">99%</span>
+                                        <span class="stat-label">Satisfaction</span>
+                                    </div>
+                                </div>
+                                <a href="https://heshan-hs.github.io/bugatti-official/index.html" target="_blank" rel="noopener" class="portfolio-btn">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-header">
+                            <h3>Bugatti Official Concept</h3>
+                            <div class="portfolio-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p>High-end automotive concept site with hyper-realistic visuals, performance specs, and luxury brand UI.</p>
+                        <div class="portfolio-tags">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="portfolio-footer">
+                            <div class="project-duration">
+                                <i class="fas fa-clock"></i>
+                                <span>6 months</span>
+                            </div>
+                            <div class="project-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-actions">
+                            <a class="project-cta" href="https://heshan-hs.github.io/bugatti-official/index.html" target="_blank" rel="noopener">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Visit Project</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item hidden-project">
+                    <div class="portfolio-image">
+                        <img
+                            class="portfolio-img"
+                            src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=1200&q=80"
+                            srcset="https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=600&q=70 600w, https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=900&q=75 900w, https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=1200&q=80 1200w"
+                            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 400px"
+                            alt="Fitness tracking mobile app on smartphone showing health stats"
+                            loading="lazy"
+                            width="1200" height="750"
+                            referrerpolicy="no-referrer"
+                            onerror="this.onerror=null; this.src='fitness-app.svg'; this.srcset='';"
+                        >
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-overlay-content">
+                                <div class="portfolio-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-value">4.8★</span>
+                                        <span class="stat-label">App Store</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-value">100K+</span>
+                                        <span class="stat-label">Downloads</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="portfolio-btn">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-header">
+                            <h3>Fitness Tracking App</h3>
+                            <div class="portfolio-status">
+                                <span class="status-badge in-progress">In Progress</span>
+                            </div>
+                        </div>
+                        <p>Cross-platform fitness app with AI-powered workout recommendations and progress tracking.</p>
+                        <div class="portfolio-tags">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">TensorFlow</span>
+                        </div>
+                        <div class="portfolio-footer">
+                            <div class="project-duration">
+                                <i class="fas fa-clock"></i>
+                                <span>5 months</span>
+                            </div>
+                            <div class="project-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-actions">
+                            <a class="project-cta" href="#" target="_blank" rel="noopener">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Visit Project</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item hidden-project">
+                    <div class="portfolio-image">
+                        <img
+                            class="portfolio-img"
+                            src="Screenshot 2025-09-09 220910.png"
+                            srcset=""
+                            sizes="100vw"
+                            alt="DevTools – AI Applications website preview"
+                            loading="lazy"
+                            decoding="async"
+                            width="1400" height="800"
+                            referrerpolicy="no-referrer"
+                            onerror="this.onerror=null; this.src='ai-chatbot.svg'; this.srcset='';"
+                        >
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-overlay-content">
+                                <div class="portfolio-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-value">85%</span>
+                                        <span class="stat-label">Efficiency</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-value">24/7</span>
+                                        <span class="stat-label">Active</span>
+                                    </div>
+                                </div>
+                                <a href="https://heshan-hs.github.io/ai-apllication/" target="_blank" rel="noopener" class="portfolio-btn">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-header">
+                            <h3>DevTools – AI Applications</h3>
+                            <div class="portfolio-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p>All-in-one online AI and developer tools with a clean, fast UI. Includes translator, chatbot, JSON formatter, color picker, and more.</p>
+                        <div class="portfolio-tags">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="portfolio-footer">
+                            <div class="project-duration">
+                                <i class="fas fa-clock"></i>
+                                <span>8 months</span>
+                            </div>
+                            <div class="project-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-actions">
+                            <a class="project-cta" href="https://heshan-hs.github.io/ai-apllication/" target="_blank" rel="noopener">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Visit Project</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item hidden-project">
+                    <div class="portfolio-image">
+                        <img
+                            class="portfolio-img"
+                            src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1400&q=85"
+                            srcset="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=700&q=75 700w, https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1000&q=80 1000w, https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1400&q=85 1400w"
+                            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 450px"
+                            alt="Advanced cybersecurity concept with padlock over binary code and modern workstation"
+                            loading="lazy"
+                            decoding="async"
+                            width="1400" height="800"
+                            referrerpolicy="no-referrer"
+                            onerror="this.onerror=null; this.src='cybersecurity-suite.svg'; this.srcset='';"
+                        >
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-overlay-content">
+                                <div class="portfolio-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-value">99.9%</span>
+                                        <span class="stat-label">Security</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-value">0</span>
+                                        <span class="stat-label">Breaches</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="portfolio-btn">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-header">
+                            <h3>Cybersecurity Suite</h3>
+                            <div class="portfolio-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p>Enterprise-grade cybersecurity solution with threat detection and incident response automation.</p>
+                        <div class="portfolio-tags">
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">Blockchain</span>
+                            <span class="tech-tag">Docker</span>
+                        </div>
+                        <div class="portfolio-footer">
+                            <div class="project-duration">
+                                <i class="fas fa-clock"></i>
+                                <span>12 months</span>
+                            </div>
+                            <div class="project-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-actions">
+                            <a class="project-cta" href="#" target="_blank" rel="noopener">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Visit Project</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- See More Projects Button -->
+            <div class="see-more-container">
+                <button class="see-more-btn" id="projectsSeeMore">
+                    <span class="btn-text">See More Projects</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing" hidden>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Business <span class="highlight-text">Pricing Plans</span></h2>
+                <p class="section-subtitle">Choose a plan that works for you</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="plan-name">Standard</h3>
+                        <p class="plan-description">For Personal Usage</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price">$299.99</span>
+                        <span class="period">Per Month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i>Custom Web Development</li>
+                        <li><i class="fas fa-check"></i>Mobile App Development</li>
+                        <li><i class="fas fa-check"></i>24/7 Email Support</li>
+                        <li><i class="fas fa-check"></i>Basic Maintenance</li>
+                    </ul>
+                    <button class="pricing-btn">BUY NOW</button>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="pricing-header">
+                        <h3 class="plan-name">Premium</h3>
+                        <p class="plan-description">For Small Business</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price">$499.99</span>
+                        <span class="period">Per Month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i>Full Stack Development</li>
+                        <li><i class="fas fa-check"></i>Database Management</li>
+                        <li><i class="fas fa-check"></i>24/7 Priority Support</li>
+                        <li><i class="fas fa-check"></i>Advanced Security</li>
+                    </ul>
+                    <button class="pricing-btn">BUY NOW</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="plan-name">Exclusive</h3>
+                        <p class="plan-description">For Enterprise Level</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price">$799.99</span>
+                        <span class="period">Per Month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i>Enterprise Solutions</li>
+                        <li><i class="fas fa-check"></i>Cloud Infrastructure</li>
+                        <li><i class="fas fa-check"></i>24/7 Dedicated Support</li>
+                        <li><i class="fas fa-check"></i>Custom Integrations</li>
+                    </ul>
+                    <button class="pricing-btn">BUY NOW</button>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="pricing-header">
+                        <h3 class="plan-name">Ultimate</h3>
+                        <p class="plan-description">For Large Corporations</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price">$1299.99</span>
+                        <span class="period">Per Month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i>Full-Scale Architecture</li>
+                        <li><i class="fas fa-check"></i>Multi-Platform Solutions</li>
+                        <li><i class="fas fa-check"></i>24/7 Premium Support</li>
+                        <li><i class="fas fa-check"></i>Advanced Analytics</li>
+                    </ul>
+                    <button class="pricing-btn">BUY NOW</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="process" hidden>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our <span class="highlight-text">Development Process</span></h2>
+                <p class="section-subtitle">A streamlined approach to software development</p>
+            </div>
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Discovery & Planning</h3>
+                    <p>We analyze your requirements and create a comprehensive project roadmap.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">
+                        <i class="fas fa-pencil-ruler"></i>
+                    </div>
+                    <h3>Design & Prototype</h3>
+                    <p>Creating intuitive designs and interactive prototypes for your approval.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Development</h3>
+                    <p>Building robust, scalable solutions using cutting-edge technologies.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">04</div>
+                    <div class="step-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Launch & Support</h3>
+                    <p>Deploying your solution and providing ongoing maintenance and support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team" hidden>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Meet Our <span class="highlight-text">Expert Team</span></h2>
+                <p class="section-subtitle">Passionate developers and designers crafting exceptional digital experiences</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-image">
+                        <div class="profile-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="team-overlay">
+                            <div class="social-links">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>Heshan Sathyanga</h3>
+                        <p class="team-role">CEO & Lead Developer</p>
+                        <div class="team-skills">
+                            <span class="skill-tag">Full Stack</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Node.js</span>
+                        </div>
+                        <p class="team-bio">5+ years of experience in building scalable web applications and leading development teams.</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-image">
+                        <div class="profile-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="team-overlay">
+                            <div class="social-links">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+                                <a href="#" aria-label="Behance"><i class="fab fa-behance"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>Sarah Johnson</h3>
+                        <p class="team-role">UI/UX Designer</p>
+                        <div class="team-skills">
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">Adobe XD</span>
+                            <span class="skill-tag">Prototyping</span>
+                        </div>
+                        <p class="team-bio">Creative designer with expertise in user-centered design and modern interface development.</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-image">
+                        <div class="profile-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="team-overlay">
+                            <div class="social-links">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="#" aria-label="Stack Overflow"><i class="fab fa-stack-overflow"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>Michael Chen</h3>
+                        <p class="team-role">Backend Developer</p>
+                        <div class="team-skills">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Docker</span>
+                        </div>
+                        <p class="team-bio">Backend specialist focused on building robust, scalable server architectures and APIs.</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-image">
+                        <div class="profile-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="team-overlay">
+                            <div class="social-links">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="#" aria-label="Medium"><i class="fab fa-medium"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>Emily Rodriguez</h3>
+                        <p class="team-role">Project Manager</p>
+                        <div class="team-skills">
+                            <span class="skill-tag">Agile</span>
+                            <span class="skill-tag">Scrum</span>
+                            <span class="skill-tag">Leadership</span>
+                        </div>
+                        <p class="team-bio">Experienced project manager ensuring smooth delivery and client satisfaction across all projects.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Expertise Section -->
+    <section id="technical" class="technical-expertise" hidden>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Technical <span class="highlight-text">Expertise</span></h2>
+                <p class="section-subtitle">Advanced technologies and methodologies we master</p>
+            </div>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Full-Stack Development</h3>
+                    <p>End-to-end web application development using modern frameworks and best practices.</p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Node.js</span>
+                        <span class="tech-badge">MongoDB</span>
+                    </div>
+                </div>
+
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Development</h3>
+                    <p>Native and cross-platform mobile applications for iOS and Android platforms.</p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">React Native</span>
+                        <span class="tech-badge">Flutter</span>
+                        <span class="tech-badge">Swift</span>
+                    </div>
+                </div>
+
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Architecture</h3>
+                    <p>Scalable cloud solutions with microservices architecture and DevOps practices.</p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">AWS</span>
+                        <span class="tech-badge">Docker</span>
+                        <span class="tech-badge">Kubernetes</span>
+                    </div>
+                </div>
+
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI & Machine Learning</h3>
+                    <p>Intelligent solutions using artificial intelligence and machine learning algorithms.</p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">TensorFlow</span>
+                        <span class="tech-badge">PyTorch</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Offerings Section -->
+    <section id="service-offerings" class="service-offerings" hidden>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Service <span class="highlight-text">Offerings</span></h2>
+                <p class="section-subtitle">Comprehensive solutions tailored to your business needs</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-item">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3>Custom Software Development</h3>
+                    </div>
+                    <p>Bespoke software solutions designed specifically for your business requirements and workflows.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i>Requirements Analysis</li>
+                        <li><i class="fas fa-check-circle"></i>System Architecture</li>
+                        <li><i class="fas fa-check-circle"></i>Quality Assurance</li>
+                        <li><i class="fas fa-check-circle"></i>Deployment & Support</li>
+                    </ul>
+                    <div class="service-footer">
+                        <span class="service-price">Starting from $2,999</span>
+                        <a href="#contact" class="service-btn">Get Quote</a>
+                    </div>
+                </div>
+
+                <div class="service-item featured">
+                    <div class="service-badge">Most Popular</div>
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>Digital Transformation</h3>
+                    </div>
+                    <p>Complete digital overhaul to modernize your business processes and enhance efficiency.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i>Process Automation</li>
+                        <li><i class="fas fa-check-circle"></i>Data Migration</li>
+                        <li><i class="fas fa-check-circle"></i>Staff Training</li>
+                        <li><i class="fas fa-check-circle"></i>Ongoing Optimization</li>
+                    </ul>
+                    <div class="service-footer">
+                        <span class="service-price">Starting from $9,999</span>
+                        <a href="#contact" class="service-btn">Get Quote</a>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Cybersecurity Solutions</h3>
+                    </div>
+                    <p>Comprehensive security measures to protect your digital assets and sensitive data.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i>Security Audits</li>
+                        <li><i class="fas fa-check-circle"></i>Penetration Testing</li>
+                        <li><i class="fas fa-check-circle"></i>Compliance Management</li>
+                        <li><i class="fas fa-check-circle"></i>24/7 Monitoring</li>
+                    </ul>
+                    <div class="service-footer">
+                        <span class="service-price">Starting from $1,999</span>
+                        <a href="#contact" class="service-btn">Get Quote</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Software Section -->
+    <section id="software" class="software" hidden>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our <span class="highlight-text">Technologies</span></h2>
+                <p class="section-subtitle">Cutting-edge tools and frameworks we use</p>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fab fa-react"></i>
+                    </div>
+                    <h3>Frontend</h3>
+                    <div class="tech-list">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Vue.js</span>
+                        <span class="tech-tag">Angular</span>
+                        <span class="tech-tag">TypeScript</span>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>Backend</h3>
+                    <div class="tech-list">
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">Java</span>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Database</h3>
+                    <div class="tech-list">
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Redis</span>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <h3>Cloud & DevOps</h3>
+                    <div class="tech-list">
+                        <span class="tech-tag">AWS</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">Kubernetes</span>
+                        <span class="tech-tag">CI/CD</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Auto-scrolling Technologies Icons Bar -->
+            <div class="tech-marquee" aria-label="Technologies we use">
+                <div class="marquee-track">
+                    <i class="fab fa-react" title="React"></i>
+                    <i class="fab fa-vuejs" title="Vue.js"></i>
+                    <i class="fab fa-angular" title="Angular"></i>
+                    <i class="fab fa-js" title="JavaScript"></i>
+                    <i class="fab fa-node-js" title="Node.js"></i>
+                    <i class="fab fa-python" title="Python"></i>
+                    <i class="fab fa-php" title="PHP"></i>
+                    <i class="fab fa-java" title="Java"></i>
+                    <i class="fab fa-aws" title="AWS"></i>
+                    <i class="fab fa-docker" title="Docker"></i>
+                    <i class="fas fa-cubes" title="Kubernetes"></i>
+                    <i class="fas fa-database" title="PostgreSQL"></i>
+                    <i class="fas fa-leaf" title="MongoDB"></i>
+                    <i class="fas fa-bolt" title="Redis"></i>
+                    <i class="fas fa-code" title="TypeScript"></i>
+                    <!-- duplicate for seamless loop -->
+                    <i class="fab fa-react" title="React"></i>
+                    <i class="fab fa-vuejs" title="Vue.js"></i>
+                    <i class="fab fa-angular" title="Angular"></i>
+                    <i class="fab fa-js" title="JavaScript"></i>
+                    <i class="fab fa-node-js" title="Node.js"></i>
+                    <i class="fab fa-python" title="Python"></i>
+                    <i class="fab fa-php" title="PHP"></i>
+                    <i class="fab fa-java" title="Java"></i>
+                    <i class="fab fa-aws" title="AWS"></i>
+                    <i class="fab fa-docker" title="Docker"></i>
+                    <i class="fas fa-cubes" title="Kubernetes"></i>
+                    <i class="fas fa-database" title="PostgreSQL"></i>
+                    <i class="fas fa-leaf" title="MongoDB"></i>
+                    <i class="fas fa-bolt" title="Redis"></i>
+                    <i class="fas fa-code" title="TypeScript"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Insights Section -->
+    <section id="blogs" class="blogs insights-section" hidden>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Latest <span class="highlight-text">Insights</span></h2>
+                <p class="section-subtitle">Stay updated with our latest thoughts and industry trends</p>
+            </div>
+            <div class="insights-grid">
+                <article class="insight-card featured">
+                    <div class="insight-image">
+                        <img
+                            class="insight-img"
+                            src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1400&q=90"
+                            srcset="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=700&q=80 700w, https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1000&q=85 1000w, https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1400&q=90 1400w"
+                            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 640px"
+                            alt="Modern developer desk with multi-screen web development environment"
+                            loading="lazy"
+                            decoding="async"
+                            width="1400" height="900"
+                            referrerpolicy="no-referrer"
+                        >
+                        <div class="insight-overlay">
+                            <div class="overlay-content">
+                                <span class="read-time"><i class="fas fa-clock"></i> 5 min read</span>
+                                <div class="insight-stats">
+                                    <span class="views"><i class="fas fa-eye"></i> 2.5k</span>
+                                    <span class="likes"><i class="fas fa-heart"></i> 180</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="insight-content">
+                        <div class="insight-meta">
+                            <span class="insight-date"><i class="fas fa-calendar"></i> Dec 15, 2024</span>
+                            <span class="insight-category development">Development</span>
+                        </div>
+                        <h3>The Future of Web Development</h3>
+                        <p>Exploring emerging trends and technologies shaping the future of web development. Discover the latest frameworks, tools, and methodologies that are revolutionizing how we build digital experiences.</p>
+                        <div class="insight-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">AI</span>
+                            <span class="tag">WebAssembly</span>
+                        </div>
+                        <div class="insight-footer">
+                            <div class="author-info">
+                                <div class="author-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <span class="author-name">SoftCode Pro Team</span>
+                            </div>
+                            <a href="#" class="insight-link">
+                                <span>Read More</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="insight-card">
+                    <div class="insight-image">
+                        <img
+                            class="insight-img"
+                            src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1400&q=90"
+                            srcset="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=80 700w, https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1000&q=85 1000w, https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1400&q=90 1400w"
+                            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 640px"
+                            alt="Mobile app development with smartphone and code editor in a premium setup"
+                            loading="lazy"
+                            decoding="async"
+                            width="1400" height="900"
+                            referrerpolicy="no-referrer"
+                        >
+                        <div class="insight-overlay">
+                            <div class="overlay-content">
+                                <span class="read-time"><i class="fas fa-clock"></i> 7 min read</span>
+                                <div class="insight-stats">
+                                    <span class="views"><i class="fas fa-eye"></i> 1.8k</span>
+                                    <span class="likes"><i class="fas fa-heart"></i> 142</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="insight-content">
+                        <div class="insight-meta">
+                            <span class="insight-date"><i class="fas fa-calendar"></i> Dec 10, 2024</span>
+                            <span class="insight-category mobile">Mobile</span>
+                        </div>
+                        <h3>Mobile App Development Best Practices</h3>
+                        <p>Essential guidelines for creating successful mobile applications in 2024. Learn about performance optimization, user experience design, and cross-platform development strategies.</p>
+                        <div class="insight-tags">
+                            <span class="tag">Flutter</span>
+                            <span class="tag">React Native</span>
+                            <span class="tag">UX</span>
+                        </div>
+                        <div class="insight-footer">
+                            <div class="author-info">
+                                <div class="author-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <span class="author-name">SoftCode Pro Team</span>
+                            </div>
+                            <a href="#" class="insight-link">
+                                <span>Read More</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="insight-card">
+                    <div class="insight-image">
+                        <img
+                            class="insight-img"
+                            src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1400&q=90"
+                            srcset="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=700&q=80 700w, https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1000&q=85 1000w, https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1400&q=90 1400w"
+                            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 640px"
+                            alt="Cloud infrastructure concept with servers and abstract cloud visuals in a data center"
+                            loading="lazy"
+                            decoding="async"
+                            width="1400" height="900"
+                            referrerpolicy="no-referrer"
+                        >
+                        <div class="insight-overlay">
+                            <div class="overlay-content">
+                                <span class="read-time"><i class="fas fa-clock"></i> 6 min read</span>
+                                <div class="insight-stats">
+                                    <span class="views"><i class="fas fa-eye"></i> 3.2k</span>
+                                    <span class="likes"><i class="fas fa-heart"></i> 225</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="insight-content">
+                        <div class="insight-meta">
+                            <span class="insight-date"><i class="fas fa-calendar"></i> Dec 5, 2024</span>
+                            <span class="insight-category cloud">Cloud</span>
+                        </div>
+                        <h3>Cloud Migration Strategies</h3>
+                        <p>A comprehensive guide to successful cloud migration for modern businesses. Explore different migration approaches, cost optimization techniques, and security considerations.</p>
+                        <div class="insight-tags">
+                            <span class="tag">AWS</span>
+                            <span class="tag">Azure</span>
+                            <span class="tag">DevOps</span>
+                        </div>
+                        <div class="insight-footer">
+                            <div class="author-info">
+                                <div class="author-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <span class="author-name">SoftCode Pro Team</span>
+                            </div>
+                            <a href="#" class="insight-link">
+                                <span>Read More</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="insights-cta">
+                <h3>Want to stay updated?</h3>
+                <p>Subscribe to our newsletter for the latest insights and industry trends</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" class="newsletter-input">
+                    <button class="newsletter-btn">
+                        <span>Subscribe</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Professional <span class="highlight-text">Experience</span></h2>
+                <p class="section-subtitle">A snapshot of my roles, responsibilities, and impact</p>
+            </div>
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="experience-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="experience-meta">
+                            <h3>Lead Full-Stack Developer</h3>
+                            <div class="company-info">
+                                <span class="company">SoftCode Pro</span>
+                                <span class="duration">2022 - Present</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="experience-description">Architected and delivered scalable web applications, led code reviews, and mentored junior developers in modern development practices.</p>
+                    <div class="experience-skills">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Next.js</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">CI/CD</span>
+                    </div>
+                    <div class="experience-achievements">
+                        <div class="achievement-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Led team of 5 developers</span>
+                        </div>
+                        <div class="achievement-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Improved app performance by 40%</span>
+                        </div>
+                        <div class="achievement-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Delivered 15+ projects on time</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="experience-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="experience-meta">
+                            <h3>Full-Stack Engineer</h3>
+                            <div class="company-info">
+                                <span class="company">Freelance</span>
+                                <span class="duration">2020 - 2022</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="experience-description">Built bespoke solutions for startups including dashboards, e-commerce platforms, and internal tools with focus on performance and user experience.</p>
+                    <div class="experience-skills">
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Testing</span>
+                        <span class="skill-tag">Performance</span>
+                    </div>
+                    <div class="experience-achievements">
+                        <div class="achievement-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Completed 25+ client projects</span>
+                        </div>
+                        <div class="achievement-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>95% client satisfaction rate</span>
+                        </div>
+                        <div class="achievement-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Built scalable architectures</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="experience-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="experience-meta">
+                            <h3>Junior Developer</h3>
+                            <div class="company-info">
+                                <span class="company">Tech Startup</span>
+                                <span class="duration">2019 - 2020</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="experience-description">Started my professional journey building responsive web applications and learning modern development workflows in an agile environment.</p>
+                    <div class="experience-skills">
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Agile</span>
+                        <span class="skill-tag">REST APIs</span>
+                    </div>
+                    <div class="experience-achievements">
+                        <div class="achievement-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Contributed to 10+ features</span>
+                        </div>
+                        <div class="achievement-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Learned modern frameworks</span>
+                        </div>
+                        <div class="achievement-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Built responsive interfaces</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="education">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Education & <span class="highlight-text">Certifications</span></h2>
+                <p class="section-subtitle">Academic background and professional certifications</p>
+            </div>
+            
+            <div class="education-tabs">
+                <button class="tab-btn active" data-tab="formal">Formal Education</button>
+                <button class="tab-btn" data-tab="certificates">Certificates</button>
+            </div>
+            
+            <div class="education-content">
+                <!-- Formal Education Tab -->
+                <div class="tab-content active" id="formal">
+                    <div class="education-timeline">
+                        <div class="education-item">
+                            <div class="education-dot"></div>
+                            <div class="education-card">
+                                <div class="education-header">
+                                    <h3>B.Sc. in Software Engineering</h3>
+                                    <span class="education-duration">2024 - 2028</span>
+                                </div>
+                                <div class="education-institution">
+                                    <i class="fas fa-university"></i>
+                                    <span>Java Institute For Advanced Technology</span>
+                                </div>
+                                <p class="education-description">
+                                    Focused on software engineering, algorithms, and web development. Completed a final year project on a full-stack e-commerce platform.
+                                </p>
+                                <div class="education-skills">
+                                    <span class="skill-tag">Software Engineering</span>
+                                    <span class="skill-tag">Algorithms</span>
+                                    <span class="skill-tag">Web Development</span>
+                                    <span class="skill-tag">Full-Stack</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="education-item">
+                            <div class="education-dot"></div>
+                            <div class="education-card">
+                                <div class="education-header">
+                                    <h3>G.C.E. Advanced Level</h3>
+                                    <span class="education-duration">2022 - 2024</span>
+                                </div>
+                                <div class="education-institution">
+                                    <i class="fas fa-school"></i>
+                                    <span>Haliela Central College Badulla</span>
+                                </div>
+                                <p class="education-description">
+                                    Studied in the technology stream, achieving excellent results in SFT, ICT, and ET.
+                                </p>
+                                <div class="education-skills">
+                                    <span class="skill-tag">Technology Stream</span>
+                                    <span class="skill-tag">SFT</span>
+                                    <span class="skill-tag">ICT</span>
+                                    <span class="skill-tag">ET</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="education-item">
+                            <div class="education-dot"></div>
+                            <div class="education-card">
+                                <div class="education-header">
+                                    <h3>G.C.E. Ordinary Level</h3>
+                                    <span class="education-duration">2020</span>
+                                </div>
+                                <div class="education-institution">
+                                    <i class="fas fa-school"></i>
+                                    <span>B/Uva Science College - Hali-Ela</span>
+                                </div>
+                                <p class="education-description">
+                                    Achieved excellent results, demonstrating a strong foundation across a wide range of subjects.
+                                </p>
+                                <div class="education-skills">
+                                    <span class="skill-tag">Mathematics</span>
+                                    <span class="skill-tag">Science</span>
+                                    <span class="skill-tag">English</span>
+                                    <span class="skill-tag">Technology</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certificates Tab -->
+                <div class="tab-content" id="certificates">
+                    <div class="certificates-grid">
+                        <!-- First Row (Always Visible) -->
+                        <div class="certificate-card">
+                            <div class="certificate-image" onclick="openCertificateModal('IMG_20250806_113154_942.jpg', 'UWU EXPO 2022 - Exhibition', 'UWU EXPO', '2022')">
+                                <img src="IMG_20250806_113154_942.jpg" alt="UWU EXPO 2022 Certificate" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="image-placeholder" style="display: none;">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <button class="quick-view-btn">
+                                    <i class="fas fa-eye"></i>
+                                    Quick View
+                                </button>
+                            </div>
+                            <h3>UWU EXPO 2022 - Exhibition</h3>
+                            <p class="certificate-issuer">UWU EXPO</p>
+                            <p class="certificate-date">2022</p>
+                        </div>
+                        
+                        <div class="certificate-card">
+                            <div class="certificate-image" onclick="openCertificateModal('IMG_20250806_113310_893.jpg', 'Web Application Development', 'Ministry of Education', '2023')">
+                                <img src="IMG_20250806_113310_893.jpg" alt="Web Application Development Certificate" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="image-placeholder" style="display: none;">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <button class="quick-view-btn">
+                                    <i class="fas fa-eye"></i>
+                                    Quick View
+                                </button>
+                            </div>
+                            <h3>Web Application Development</h3>
+                            <p class="certificate-issuer">Ministry of Education</p>
+                            <p class="certificate-date">2023</p>
+                        </div>
+                        
+                        <div class="certificate-card">
+                            <div class="certificate-image" onclick="openCertificateModal('IMG_20250806_113328_879.jpg', 'All Island School Robot and Invention Competition', 'Ministry of Education', '2023')">
+                                <img src="IMG_20250806_113328_879.jpg" alt="Robot Competition Certificate" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="image-placeholder" style="display: none;">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <button class="quick-view-btn">
+                                    <i class="fas fa-eye"></i>
+                                    Quick View
+                                </button>
+                            </div>
+                            <h3>All Island School Robot and Invention Competition</h3>
+                            <p class="certificate-issuer">Ministry of Education</p>
+                            <p class="certificate-date">2023</p>
+                        </div>
+                        
+                        <!-- Additional Rows (Hidden Initially) -->
+                        <div class="certificate-card hidden-certificate">
+                            <div class="certificate-image" onclick="openCertificateModal('images/certificates/aws-cloud-practitioner.jpg', 'AWS Cloud Practitioner', 'Amazon Web Services', '2024')">
+                                <img src="images/certificates/aws-cloud-practitioner.jpg" alt="AWS Cloud Practitioner Certificate" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="image-placeholder" style="display: none;">
+                                    <i class="fab fa-aws"></i>
+                                </div>
+                                <button class="quick-view-btn">
+                                    <i class="fas fa-eye"></i>
+                                    Quick View
+                                </button>
+                            </div>
+                            <h3>AWS Cloud Practitioner</h3>
+                            <p class="certificate-issuer">Amazon Web Services</p>
+                            <p class="certificate-date">2024</p>
+                        </div>
+                        
+                        <div class="certificate-card hidden-certificate">
+                            <div class="certificate-image">
+                                <img src="images/certificates/react-developer.jpg" alt="React Developer Certificate" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="image-placeholder" style="display: none;">
+                                    <i class="fab fa-react"></i>
+                                </div>
+                            </div>
+                            <h3>React Developer Certification</h3>
+                            <p class="certificate-issuer">Meta</p>
+                            <p class="certificate-date">2023</p>
+                        </div>
+                        
+                        <div class="certificate-card hidden-certificate">
+                            <div class="certificate-image">
+                                <img src="images/certificates/nodejs-developer.jpg" alt="Node.js Developer Certificate" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="image-placeholder" style="display: none;">
+                                    <i class="fab fa-node-js"></i>
+                                </div>
+                            </div>
+                            <h3>Node.js Developer</h3>
+                            <p class="certificate-issuer">OpenJS Foundation</p>
+                            <p class="certificate-date">2023</p>
+                        </div>
+                        
+                        <div class="certificate-card hidden-certificate">
+                            <div class="certificate-image">
+                                <img src="images/certificates/mongodb-developer.jpg" alt="MongoDB Developer Certificate" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="image-placeholder" style="display: none;">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                            </div>
+                            <h3>MongoDB Developer</h3>
+                            <p class="certificate-issuer">MongoDB University</p>
+                            <p class="certificate-date">2022</p>
+                        </div>
+                        
+                        <div class="certificate-card hidden-certificate">
+                            <div class="certificate-image">
+                                <img src="images/certificates/python-programming.jpg" alt="Python Programming Certificate" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="image-placeholder" style="display: none;">
+                                    <i class="fab fa-python"></i>
+                                </div>
+                            </div>
+                            <h3>Python Programming</h3>
+                            <p class="certificate-issuer">Python Institute</p>
+                            <p class="certificate-date">2022</p>
+                        </div>
+                        
+                        <div class="certificate-card hidden-certificate">
+                            <div class="certificate-image">
+                                <img src="images/certificates/mobile-app-development.jpg" alt="Mobile App Development Certificate" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="image-placeholder" style="display: none;">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                            </div>
+                            <h3>Mobile App Development</h3>
+                            <p class="certificate-issuer">Google Developers</p>
+                            <p class="certificate-date">2023</p>
+                        </div>
+                    </div>
+                    
+                    <div class="certificates-actions">
+                        <button class="see-more-btn" id="certificatesSeeMore">
+                            <span class="btn-text">See More</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Ready to start your next project? Let's discuss your requirements</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>info@hssoftware.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p>+94 77 123 4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>Colombo, Sri Lanka</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Testimonials Section (Bottom) -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Client <span class="highlight-text">Testimonials</span></h2>
+                <p class="section-subtitle">What clients say about working with me</p>
+            </div>
+
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="avatar">HS</div>
+                        <div class="meta">
+                            <h4>Dinuka Perera</h4>
+                            <span>Product Manager, NexaLabs</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">“Delivery was on time and the code quality was excellent. Heshan quickly understood our business needs and shipped a performant, scalable solution.”</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="avatar">AK</div>
+                        <div class="meta">
+                            <h4>Anjalee Karunaratne</h4>
+                            <span>Founder, FitLife</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">“Great collaboration and clear communication throughout. The mobile app feels polished and the UX is spot on.”</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="avatar">RM</div>
+                        <div class="meta">
+                            <h4>Ravindu Madushan</h4>
+                            <span>CTO, ShopNow</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">“From architecture to deployment, Heshan handled everything professionally. Highly recommend for full‑stack projects.”</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section (Bottom) -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently <span class="highlight-text">Asked</span> Questions</h2>
+                <p class="section-subtitle">Quick answers for clients before we get started</p>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span><i class="fas fa-clock"></i> Project timelines?</span>
+                        <i class="fas fa-chevron-down caret"></i>
+                    </button>
+                    <div class="faq-answer">
+                        Typical web projects take 2–6 weeks depending on scope. I share a clear milestone plan with weekly updates.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span><i class="fas fa-handshake"></i> How do we start?</span>
+                        <i class="fas fa-chevron-down caret"></i>
+                    </button>
+                    <div class="faq-answer">
+                        We begin with a 30‑minute discovery call, finalize requirements, and I provide a fixed quote or hourly plan.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span><i class="fas fa-code"></i> Tech stack & handover?</span>
+                        <i class="fas fa-chevron-down caret"></i>
+                    </button>
+                    <div class="faq-answer">
+                        Modern stack (React/Node/DB) with clean documentation. I provide source code, deployment guides, and a short handover session.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Map Section (Bottom) -->
+    <section class="location-map">
+        <div class="container">
+            <div class="map-full-wrapper">
+                <a href="https://maps.app.goo.gl/hmrbEUB47GBjGVdr6" target="_blank" class="map-full-link">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.798467128632!2d79.8612!3d6.9271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTUnMzcuNiJOIDc5wrA1MSc0MC4zIkU!5e0!3m2!1sen!2slk!4v1694123456789!5m2!1sen!2slk"
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                    <div class="map-full-overlay">
+                        <div class="map-full-overlay-content">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>Click to open in Google Maps</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Heshan Sathyanga</h3>
+                    <p>Building next-level digital experiences with modern web technologies.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#portfolio">Projects</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="resume.pdf" download>Resume</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#skills">Tech Stack</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i> info@hssoftware.com</p>
+                    <p><i class="fas fa-phone"></i> +94 77 123 4567</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Colombo, Sri Lanka</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Heshan Sathyanga. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Certificate Modal -->
+    <div class="certificate-modal" id="certificateModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeCertificateModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <img class="modal-certificate-image" id="modalCertificateImage" src="" alt="Certificate">
+            <div class="modal-certificate-info">
+                <h3 class="modal-certificate-title" id="modalCertificateTitle"></h3>
+                <p class="modal-certificate-issuer">Issued by: <span id="modalCertificateIssuer"></span></p>
+                <p class="modal-certificate-date" id="modalCertificateDate"></p>
+                <div class="modal-actions">
+                    <button class="download-btn" onclick="downloadCertificate()">
+                        <i class="fas fa-download"></i>
+                        Download Certificate
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

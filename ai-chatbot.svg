@@ -1,0 +1,74 @@
+<svg width="400" height="250" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="chat" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="250" fill="url(#bg5)"/>
+  
+  <!-- Chat Interface -->
+  <rect x="50" y="40" width="300" height="170" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  
+  <!-- Header -->
+  <rect x="50" y="40" width="300" height="35" rx="12" fill="#1e293b"/>
+  <circle cx="70" cy="57" r="8" fill="#10b981"/>
+  <text x="85" y="62" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff">AI Assistant</text>
+  <text x="320" y="62" font-family="Arial, sans-serif" font-size="8" fill="#64748b">●</text>
+  
+  <!-- Chat Messages -->
+  <!-- User Message -->
+  <rect x="200" y="85" width="140" height="25" rx="12" fill="#3b82f6"/>
+  <text x="210" y="100" font-family="Arial, sans-serif" font-size="9" fill="#ffffff">How can I improve my</text>
+  <text x="210" y="110" font-family="Arial, sans-serif" font-size="9" fill="#ffffff">website performance?</text>
+  
+  <!-- Bot Message -->
+  <rect x="60" y="120" width="160" height="35" rx="12" fill="#f1f5f9" stroke="#e2e8f0"/>
+  <text x="70" y="135" font-family="Arial, sans-serif" font-size="9" fill="#1e293b">I can help you optimize your website!</text>
+  <text x="70" y="145" font-family="Arial, sans-serif" font-size="9" fill="#1e293b">Here are some key strategies:</text>
+  
+  <!-- Suggestions -->
+  <rect x="70" y="160" width="120" height="8" rx="4" fill="#dbeafe"/>
+  <text x="75" y="167" font-family="Arial, sans-serif" font-size="7" fill="#1e40af">• Optimize images</text>
+  
+  <rect x="70" y="172" width="120" height="8" rx="4" fill="#dbeafe"/>
+  <text x="75" y="179" font-family="Arial, sans-serif" font-size="7" fill="#1e40af">• Minimize JavaScript</text>
+  
+  <!-- User Message -->
+  <rect x="220" y="185" width="110" height="15" rx="8" fill="#3b82f6"/>
+  <text x="230" y="195" font-family="Arial, sans-serif" font-size="8" fill="#ffffff">Tell me more about images</text>
+  
+  <!-- Input Area -->
+  <rect x="60" y="215" width="220" height="20" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="70" y="227" font-family="Arial, sans-serif" font-size="8" fill="#9ca3af">Type your message...</text>
+  <rect x="290" y="218" width="50" height="14" rx="7" fill="url(#chat)"/>
+  <text x="310" y="227" font-family="Arial, sans-serif" font-size="7" fill="#ffffff">Send</text>
+  
+  <!-- AI Brain Icon -->
+  <g transform="translate(20, 100)">
+    <circle cx="15" cy="15" r="12" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+    <circle cx="12" cy="12" r="2" fill="rgba(255,255,255,0.6)"/>
+    <circle cx="18" cy="12" r="2" fill="rgba(255,255,255,0.6)"/>
+    <circle cx="15" cy="18" r="1" fill="rgba(255,255,255,0.6)"/>
+    <path d="M10 8c0-2 2-4 5-4s5 2 5 4" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" fill="none"/>
+  </g>
+  
+  <!-- Network Nodes -->
+  <g transform="translate(360, 60)">
+    <circle cx="0" cy="0" r="3" fill="rgba(255,255,255,0.3)"/>
+    <circle cx="10" cy="8" r="2" fill="rgba(255,255,255,0.3)"/>
+    <circle cx="-8" cy="12" r="2" fill="rgba(255,255,255,0.3)"/>
+    <line x1="0" y1="0" x2="10" y2="8" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+    <line x1="0" y1="0" x2="-8" y2="12" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+  </g>
+  
+  <!-- Floating Elements -->
+  <circle cx="30" cy="180" r="20" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="370" cy="190" r="15" fill="rgba(255,255,255,0.1)"/>
+</svg>

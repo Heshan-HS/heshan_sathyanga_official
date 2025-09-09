@@ -1,0 +1,80 @@
+<svg width="400" height="250" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="progress" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="250" fill="url(#bg3)"/>
+  
+  <!-- LMS Interface -->
+  <rect x="20" y="30" width="360" height="190" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  
+  <!-- Header -->
+  <rect x="20" y="30" width="360" height="35" rx="8" fill="#1e293b"/>
+  <text x="35" y="50" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff">EduPlatform LMS</text>
+  
+  <!-- User Avatar -->
+  <circle cx="340" cy="47" r="8" fill="#3b82f6"/>
+  <text x="336" y="51" font-family="Arial, sans-serif" font-size="8" fill="#ffffff">JS</text>
+  
+  <!-- Sidebar -->
+  <rect x="30" y="75" width="80" height="135" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="35" y="90" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#1e293b">Courses</text>
+  
+  <!-- Course List -->
+  <rect x="35" y="95" width="70" height="15" rx="2" fill="#e2e8f0"/>
+  <text x="38" y="105" font-family="Arial, sans-serif" font-size="7" fill="#64748b">Web Development</text>
+  
+  <rect x="35" y="115" width="70" height="15" rx="2" fill="#dbeafe"/>
+  <text x="38" y="125" font-family="Arial, sans-serif" font-size="7" fill="#3b82f6">React Basics</text>
+  
+  <rect x="35" y="135" width="70" height="15" rx="2" fill="#e2e8f0"/>
+  <text x="38" y="145" font-family="Arial, sans-serif" font-size="7" fill="#64748b">JavaScript</text>
+  
+  <rect x="35" y="155" width="70" height="15" rx="2" fill="#e2e8f0"/>
+  <text x="38" y="165" font-family="Arial, sans-serif" font-size="7" fill="#64748b">Node.js</text>
+  
+  <!-- Main Content Area -->
+  <rect x="120" y="75" width="250" height="135" rx="4" fill="#ffffff" stroke="#e2e8f0"/>
+  
+  <!-- Course Header -->
+  <rect x="130" y="85" width="230" height="25" rx="2" fill="#f1f5f9"/>
+  <text x="135" y="100" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#1e293b">React Fundamentals</text>
+  
+  <!-- Progress Bar -->
+  <rect x="135" y="120" width="150" height="8" rx="4" fill="#e2e8f0"/>
+  <rect x="135" y="120" width="90" height="8" rx="4" fill="url(#progress)"/>
+  <text x="135" y="140" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Progress: 60% Complete</text>
+  
+  <!-- Lesson List -->
+  <rect x="135" y="150" width="210" height="15" rx="2" fill="#dcfce7" stroke="#16a34a"/>
+  <circle cx="142" cy="157" r="3" fill="#16a34a"/>
+  <text x="150" y="161" font-family="Arial, sans-serif" font-size="8" fill="#166534">✓ Introduction to React</text>
+  
+  <rect x="135" y="170" width="210" height="15" rx="2" fill="#dbeafe" stroke="#3b82f6"/>
+  <circle cx="142" cy="177" r="3" fill="#3b82f6"/>
+  <text x="150" y="181" font-family="Arial, sans-serif" font-size="8" fill="#1e40af">▶ Components & Props</text>
+  
+  <rect x="135" y="190" width="210" height="15" rx="2" fill="#f3f4f6" stroke="#d1d5db"/>
+  <circle cx="142" cy="197" r="3" fill="#9ca3af"/>
+  <text x="150" y="201" font-family="Arial, sans-serif" font-size="8" fill="#6b7280">State & Lifecycle</text>
+  
+  <!-- Video Player Icon -->
+  <g transform="translate(300, 120)">
+    <rect width="40" height="25" rx="2" fill="#1e293b"/>
+    <polygon points="15,8 15,17 25,12.5" fill="#ffffff"/>
+  </g>
+  
+  <!-- Graduation Cap Icon -->
+  <g transform="translate(320, 85)">
+    <path d="M12 14l9-5-9-5-9 5 9 5z" stroke="#3b82f6" stroke-width="1.5" fill="#dbeafe"/>
+    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" stroke="#3b82f6" stroke-width="1.5" fill="none"/>
+  </g>
+</svg>
