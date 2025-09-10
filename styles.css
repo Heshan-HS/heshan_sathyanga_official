@@ -3715,6 +3715,10 @@ body {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
     }
+    /* At 2 columns, show only the first row (2 items) */
+    .portfolio-grid.collapsed .portfolio-item:nth-child(n+3) {
+        display: none;
+    }
 }
 
 /* Fine-tune title size only for the first card (SoftCode – Software Company)
@@ -3722,6 +3726,13 @@ body {
 .portfolio-grid .portfolio-item:nth-child(1) .portfolio-content h3 {
     font-size: 1.2rem;
     line-height: 1.22;
+}
+
+/* On small screens (single column), show only the first item */
+@media (max-width: 768px) {
+    .portfolio-grid.collapsed .portfolio-item:nth-child(n+2) {
+        display: none;
+    }
 }
 
 @media (max-width: 480px) {

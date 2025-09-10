@@ -111,6 +111,7 @@ function initializeFAQ() {
 function initializeProjectsSeeMore() {
     const seeMoreBtn = document.getElementById('projectsSeeMore');
     const hiddenProjects = document.querySelectorAll('.hidden-project');
+    const portfolioGrid = document.querySelector('.portfolio-grid');
     let isExpanded = false;
     
     if (seeMoreBtn) {
@@ -118,6 +119,10 @@ function initializeProjectsSeeMore() {
             isExpanded = !isExpanded;
             
             if (isExpanded) {
+                // Remove collapsed state to show all columns/rows
+                if (portfolioGrid) {
+                    portfolioGrid.classList.remove('collapsed');
+                }
                 // Add loading state to button
                 seeMoreBtn.style.transform = 'scale(0.95)';
                 setTimeout(() => {
@@ -155,6 +160,10 @@ function initializeProjectsSeeMore() {
                         project.style.display = 'none';
                     }, 600);
                 });
+                // Add collapsed state back to limit to a single row
+                if (portfolioGrid) {
+                    portfolioGrid.classList.add('collapsed');
+                }
                 
                 // Update button text and icon
                 seeMoreBtn.querySelector('.btn-text').textContent = 'See More Projects';
