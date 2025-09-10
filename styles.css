@@ -3728,6 +3728,13 @@ body {
     line-height: 1.22;
 }
 
+/* Desktop: 3 columns - show only first row (3 items) when collapsed */
+@media (min-width: 1025px) {
+    .portfolio-grid.collapsed .portfolio-item:nth-child(n+4) {
+        display: none;
+    }
+}
+
 /* On small screens (single column), show only the first item */
 @media (max-width: 768px) {
     .portfolio-grid.collapsed .portfolio-item:nth-child(n+2) {
@@ -5726,7 +5733,7 @@ section:first-of-type { margin-top: 0 !important; }
 /* ============================= */
 .about-intro {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 2fr;
     gap: 4rem;
     align-items: center;
     margin-bottom: 5rem;
