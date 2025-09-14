@@ -1,0 +1,3532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Admin - Heshan Sathyanga</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            /* Portfolio Theme Colors */
+            --primary-gradient: linear-gradient(135deg, rgb(14, 25, 72) 0%, rgb(36, 97, 230) 100%);
+            --secondary-gradient: linear-gradient(135deg, #09203f 0%, #537895 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark-gradient: linear-gradient(135deg, #121212 0%, #282828 100%);
+            
+            --primary-color: rgb(36, 97, 230);
+            --secondary-color: rgb(14, 25, 72);
+            --accent-color: #4facfe;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --white: #ffffff;
+            --light-bg: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --border-color: rgba(255, 255, 255, 0.2);
+            --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-medium: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 20px 40px rgba(36, 97, 230, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        .main-content {
+            padding: 2rem;
+            background: transparent;
+            min-height: calc(100vh - 140px);
+            width: 100%;
+            max-width: none;
+        }
+
+        .admin-container {
+            /* Base container styles (overridden by layout-specific rule below) */
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .admin-header {
+            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .admin-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .admin-header p {
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+
+        .admin-content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            scroll-margin-top: 20px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #2d3748;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            padding: 2rem;
+            background: #ffffff;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+        }
+
+        .project-card {
+            background: #ffffff;
+            border-radius: 25px;
+            padding: 0;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(36, 97, 230, 0.12);
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+            /* subtle inner ring for clearer border even on light backgrounds */
+            box-shadow: inset 0 0 0 1px rgba(36, 97, 230, 0.06), 0 15px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(14, 25, 72, 0.15);
+            border-color: rgba(36, 97, 230, 0.35);
+        }
+
+        /* Subtle gradient glow border (visible even when not hovered) */
+        .project-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 25px;
+            padding: 2px; /* border thickness */
+            background: linear-gradient(135deg, rgba(36,97,230,0.45), rgba(14,25,72,0.25));
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+                    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor; /* clip inner */
+                    mask-composite: exclude;
+            opacity: 0.35;
+            transition: opacity 0.35s ease;
+            pointer-events: none;
+        }
+
+        .project-card:hover::before { opacity: 0.9; }
+
+        /* Soft glossy pattern like portfolio */
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: -40%;
+            left: -20%;
+            width: 140%;
+            height: 90%;
+            background: radial-gradient(60% 60% at 20% 0%, rgba(79,172,254,0.08), rgba(79,172,254,0) 60%),
+                        radial-gradient(50% 50% at 90% 20%, rgba(14,25,72,0.06), rgba(14,25,72,0) 60%);
+            filter: blur(0.5px);
+            pointer-events: none;
+        }
+
+        .project-card .project-meta {
+            padding: 0 2rem 1rem 2rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .project-meta p {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .project-meta strong {
+            color: var(--text-primary);
+            font-weight: 600;
+            min-width: 80px;
+        }
+
+        /* Multi-line clamp for long descriptions */
+        .project-description,
+        .project-meta p.description {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+                    line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            color: var(--text-secondary);
+            padding: 0 2rem 0.75rem 2rem; /* keep text away from tags below */
+            margin-bottom: 0.35rem; /* extra separation from chips */
+            word-break: break-word;
+        }
+
+        .project-meta i {
+            color: var(--primary-color);
+            width: 16px;
+            text-align: center;
+        }
+
+        .project-card .project-header {
+            padding: 2rem 2rem 1rem 2rem;
+            background: linear-gradient(135deg, rgba(36, 97, 230, 0.02) 0%, rgba(14, 25, 72, 0.02) 100%);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .project-header h3 {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Project status badge */
+        .project-status {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: .2px;
+            color: #fff;
+            background: var(--secondary-gradient);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        }
+        .project-status.status-completed { background: var(--primary-gradient); }
+        .project-status.status-in { background: linear-gradient(135deg, #f59e0b, #ef4444); } /* fallback */
+        .project-status.status_in_progress,
+        .project-status.status-in_progress,
+        .project-status.status-In\ Progress { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center; /* ensure chips align on center baseline */
+            justify-content: center; /* center chips horizontally within the card */
+            padding: 0.25rem 1.25rem 0.9rem 1.25rem; /* top padding so chips don't touch text */
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .tag {
+            background: rgba(59, 130, 246, 0.10);
+            color: var(--primary-color);
+            padding: 0 12px; /* control horizontal spacing */
+            height: 28px; /* fixed chip height for perfect centering */
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid rgba(59, 130, 246, 0.18);
+            letter-spacing: 0.2px;
+            line-height: 1; /* avoid baseline offset */
+            display: inline-flex; /* center content inside chip */
+            align-items: center;
+            justify-content: center;
+            vertical-align: middle;
+        }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 0.875rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        /* Testimonial-specific styling */
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px rgba(36, 97, 230, 0.3);
+        }
+
+        .testimonial-position {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin: 0.25rem 0;
+        }
+
+        .testimonial-rating {
+            color: #fbbf24;
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        .testimonial-rating i {
+            margin-right: 2px;
+        }
+
+        /* Enhanced Education card styling */
+        .education-card .project-header {
+            background: linear-gradient(135deg, rgba(36, 97, 230, 0.05) 0%, rgba(14, 25, 72, 0.03) 100%);
+            position: relative;
+        }
+
+        .education-card .project-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(36, 97, 230, 0.1), rgba(14, 25, 72, 0.05));
+            border-radius: 0 25px 0 50px;
+            opacity: 0.6;
+        }
+
+        /* Institution and year badges with enhanced styling */
+        .education-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 0.5rem;
+            align-items: center;
+        }
+
+        .education-institution {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.08));
+            color: #059669;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .education-year {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.08));
+            color: #d97706;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Enhanced highlights section */
+        .education-highlights {
+            padding: 1rem 2rem;
+            background: rgba(248, 250, 252, 0.3);
+            border-top: 1px solid rgba(0, 0, 0, 0.03);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .education-highlights .tag {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(67, 56, 202, 0.08));
+            color: #4338ca;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            font-size: 0.75rem;
+            padding: 5px 10px;
+            margin: 2px;
+        }
+
+        /* Enhanced FAQ card styling */
+        .faq-card .project-header {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.05) 0%, rgba(180, 83, 9, 0.03) 100%);
+            position: relative;
+        }
+
+        .faq-card .project-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(139, 69, 19, 0.6), rgba(180, 83, 9, 0.4));
+            border-radius: 0 2px 2px 0;
+        }
+
+        .faq-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.1), rgba(180, 83, 9, 0.08));
+            color: #92400e;
+            margin-right: 1rem;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px rgba(139, 69, 19, 0.2);
+        }
+
+        .faq-question {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .faq-answer-preview {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+                    line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Enhanced Contact card styling */
+        .contact-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+        }
+
+        .contact-item-preview {
+            background: #ffffff;
+            border-radius: 25px;
+            padding: 0;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(147, 51, 234, 0.12);
+            position: relative;
+            overflow: hidden;
+            /* subtle inner ring for clearer border */
+            box-shadow: inset 0 0 0 1px rgba(147, 51, 234, 0.06), 0 15px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-item-preview:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(147, 51, 234, 0.15);
+            border-color: rgba(147, 51, 234, 0.35);
+        }
+
+        /* Purple gradient glow border for contact cards */
+        .contact-item-preview::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 25px;
+            padding: 2px;
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.45), rgba(126, 34, 206, 0.25));
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+                    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor;
+                    mask-composite: exclude;
+            opacity: 0.35;
+            transition: opacity 0.35s ease;
+            pointer-events: none;
+        }
+
+        .contact-item-preview:hover::before { opacity: 0.9; }
+
+        .contact-item-preview h4 {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.05) 0%, rgba(126, 34, 206, 0.03) 100%);
+            padding: 2rem 2rem 1rem 2rem;
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-item-preview h4 i {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(126, 34, 206, 0.08));
+            color: #7c3aed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px rgba(147, 51, 234, 0.2);
+        }
+
+        .contact-item-preview p {
+            padding: 1.5rem 2rem 2rem 2rem;
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* Enhanced Skills section styling */
+        .section {
+            background: #ffffff;
+            border-radius: 25px;
+            padding: 2rem;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(34, 197, 94, 0.12);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: inset 0 0 0 1px rgba(34, 197, 94, 0.06), 0 15px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 60px rgba(34, 197, 94, 0.15);
+            border-color: rgba(34, 197, 94, 0.25);
+        }
+
+        /* Green gradient glow border for skills section */
+        .section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 25px;
+            padding: 2px;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.4), rgba(21, 128, 61, 0.25));
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+                    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor;
+                    mask-composite: exclude;
+            opacity: 0.25;
+            transition: opacity 0.35s ease;
+            pointer-events: none;
+        }
+
+        .section:hover::before { opacity: 0.7; }
+
+        .section-title {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.08) 0%, rgba(21, 128, 61, 0.05) 100%);
+            padding: 1.5rem 2rem;
+            margin: -2rem -2rem 2rem -2rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 25px 25px 0 0;
+        }
+
+        .section-title i {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(21, 128, 61, 0.1));
+            color: #16a34a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);
+        }
+
+        .skills-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(248, 250, 252, 0.4);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .skill-chip {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(21, 128, 61, 0.08));
+            color: #16a34a;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-chip:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(34, 197, 94, 0.2);
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(21, 128, 61, 0.12));
+        }
+
+        .skill-chip .remove-btn {
+            background: rgba(239, 68, 68, 0.1);
+            color: #dc2626;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .skill-chip .remove-btn:hover {
+            background: rgba(239, 68, 68, 0.2);
+            transform: scale(1.1);
+        }
+
+        .project-card .project-actions {
+            padding: 1.5rem 2rem 2rem 2rem;
+            display: flex;
+            gap: 12px;
+            background: rgba(248, 250, 252, 0.5);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .project-card .project-actions .btn {
+            box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+        }
+
+        .project-card .project-actions .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 26px rgba(36,97,230,0.18);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-light);
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .btn-secondary {
+            background: var(--secondary-gradient);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(9, 32, 63, 0.3);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-success {
+            background: #48bb78;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #38a169;
+        }
+
+        .add-project-btn {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .add-project-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(72, 187, 120, 0.3);
+        }
+
+        .json-output {
+            background: linear-gradient(135deg, rgba(14,25,72,0.04) 0%, rgba(36,97,230,0.05) 100%);
+            color: var(--text-primary);
+            padding: 1.5rem;
+            border-radius: 20px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 0.92rem;
+            line-height: 1.55;
+            white-space: pre-wrap;
+            max-height: 520px;
+            overflow: auto;
+            border: 1px solid rgba(36, 97, 230, 0.12);
+            box-shadow: inset 0 0 0 1px rgba(36,97,230,0.06), 0 18px 45px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        /* subtle code viewer chrome */
+        .json-output::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 46px;
+            border-radius: 20px 20px 0 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.35));
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            pointer-events: none;
+        }
+
+        .json-output::-webkit-scrollbar { height: 10px; width: 10px; }
+        .json-output::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, rgba(36,97,230,0.5), rgba(14,25,72,0.5));
+            border-radius: 8px;
+            border: 2px solid rgba(255,255,255,0.6);
+        }
+        .json-output::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+            border-radius: 8px;
+        }
+
+        /* JSON toolbar */
+        .json-toolbar {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+            align-items: center;
+        }
+
+        .status-pill {
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #fff;
+            box-shadow: 0 8px 22px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+        .status-pill.autosync { background: #10b981; }
+        .status-pill.manual { background: #6b7280; }
+
+        .copy-btn {
+            background: #4299e1;
+            color: white;
+        }
+
+        .copy-btn:hover {
+            background: #3182ce;
+        }
+
+        .instructions {
+            background: #e6fffa;
+            border: 2px solid #81e6d9;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .instructions h3 {
+            color: #234e52;
+            margin-bottom: 10px;
+        }
+
+        .instructions p {
+            color: #2c7a7b;
+            line-height: 1.6;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(14, 25, 72, 0.8);
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            margin: 3% auto;
+            padding: 2rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(20px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid rgba(36, 97, 230, 0.1);
+            border-radius: 12px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(36, 97, 230, 0.1);
+            background: white;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        /* Sidebar layout */
+        .admin-layout {
+            display: flex;
+            gap: 0;
+            min-height: calc(100vh - 40px);
+        }
+
+        .sidebar {
+            width: 280px;
+            background: var(--primary-gradient);
+            color: white;
+            padding: 2rem 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-heavy);
+            border-right: 1px solid var(--border-color);
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links { padding: 0 0.75rem; }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.85rem 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border-left: 3px solid transparent;
+            margin: 0.25rem 0.35rem;
+            border-radius: 14px;
+            margin-right: 0.75rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link i {
+            width: 22px;
+            text-align: center;
+            color: rgba(255,255,255,0.75);
+            transition: color 0.25s ease, transform 0.2s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.14);
+            color: #fff;
+            border-left-color: var(--accent-color);
+            transform: translateX(4px);
+            box-shadow: 0 6px 18px rgba(79, 172, 254, 0.28);
+            backdrop-filter: saturate(120%) blur(4px);
+        }
+
+        .nav-link:hover i { color: #fff; transform: translateX(1px); }
+
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border-left-color: var(--accent-color);
+            transform: translateX(4px);
+            box-shadow: 0 8px 22px rgba(79, 172, 254, 0.36);
+            border: 1px solid rgba(255,255,255,0.18);
+        }
+
+        .nav-link.active i { color: #fff; }
+
+        /* Left glow indicator for active/hover */
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 55%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.0), rgba(79,172,254,0.9), rgba(255,255,255,0.0));
+            border-radius: 3px;
+            opacity: 0;
+            transition: opacity 0.25s ease, height 0.25s ease;
+        }
+
+        .nav-link:hover::before, .nav-link.active::before { opacity: 1; height: 70%; }
+
+        /* Refined active pill look */
+        .nav-link.active {
+            background: linear-gradient(135deg, rgba(255,255,255,0.22), rgba(255,255,255,0.12));
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 10px 24px rgba(79,172,254,0.32), inset 0 0 0 1px rgba(255,255,255,0.08);
+            font-weight: 600;
+        }
+
+        /* Keyboard-focus accessibility */
+        .nav-link:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.45);
+            background: rgba(255,255,255,0.14);
+        }
+
+        /* Subtle ripple on hover */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(closest-side, rgba(255,255,255,0.22), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.25s ease, right 0.25s ease;
+            pointer-events: none;
+            filter: blur(6px);
+        }
+        .nav-link:hover::after { opacity: 1; right: -10px; }
+
+        /* Sidebar shine and scroll shadows */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 24px;
+            pointer-events: none;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0));
+        }
+        .sidebar::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 24px;
+            pointer-events: none;
+            background: linear-gradient(to top, rgba(0,0,0,0.22), rgba(0,0,0,0));
+        }
+
+        .sidebar .divider {
+            height: 1px;
+            background: #374151;
+            margin: 1.5rem 0;
+            margin: 16px 0;
+        }
+
+        .sidebar .helper {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            margin: 1rem;
+        }
+
+        .sidebar .logo {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .sidebar .subtitle {
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+        }
+
+        /* Make content fill remaining width */
+        .admin-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .admin-layout > .admin-container {
+            /* Fill remaining space to the right of the fixed 280px sidebar */
+            width: calc(100% - 280px);
+            margin-left: 280px;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 0 20px 20px 0;
+            box-shadow: var(--shadow-heavy);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .admin-header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .admin-header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .admin-header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive: collapse sidebar on small screens */
+        @media (max-width: 900px) {
+            body { padding: 10px; }
+            .admin-layout { flex-direction: column; }
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                margin-bottom: 12px;
+            }
+            .admin-container { 
+                width: 100%;
+                margin-left: 0;
+                border-radius: 12px; 
+            }
+            .main-content {
+                padding: 1rem;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="sidebar">
+            <div class="logo"><i class="fas fa-tools"></i> Admin Panel</div>
+            <div class="subtitle">Quick Navigation</div>
+            <nav class="nav-links">
+                <a href="#section-site" class="nav-link" data-target="section-site">
+                    <i class="fas fa-sliders-h"></i> Site Content
+                </a>
+                <a href="#section-projects" class="nav-link" data-target="section-projects">
+                    <i class="fas fa-folder-open"></i> Projects
+                </a>
+                <div class="divider"></div>
+                
+                <a href="#section-skills" class="nav-link" data-target="section-skills">
+                    <i class="fas fa-code"></i> Skills
+                </a>
+                <a href="#section-experience" class="nav-link" data-target="section-experience">
+                    <i class="fas fa-briefcase"></i> Experience
+                </a>
+                <a href="#section-testimonials" class="nav-link" data-target="section-testimonials">
+                    <i class="fas fa-quote-left"></i> Testimonials
+                </a>
+                <a href="#section-education" class="nav-link" data-target="section-education">
+                    <i class="fas fa-graduation-cap"></i> Education
+                </a>
+                <a href="#section-faq" class="nav-link" data-target="section-faq">
+                    <i class="fas fa-question-circle"></i> FAQ
+                </a>
+                <a href="#section-contact" class="nav-link" data-target="section-contact">
+                    <i class="fas fa-envelope"></i> Contact
+                </a>
+                <a href="#section-pricing" class="nav-link" data-target="section-pricing">
+                    <i class="fas fa-tags"></i> Pricing
+                </a>
+                <a href="#section-certificates" class="nav-link" data-target="section-certificates">
+                    <i class="fas fa-certificate"></i> Certificates
+                </a>
+                <a href="#section-json" class="nav-link" data-target="section-json">
+                    <i class="fas fa-code"></i> Generated JSON
+                </a>
+            </nav>
+            <div class="helper">
+                <i class="fas fa-circle-notch fa-spin"></i> Auto-sync status is shown near JSON.
+            </div>
+        </aside>
+
+        <div class="admin-container">
+        <div class="admin-header">
+            <h1><i class="fas fa-cog"></i> Portfolio Admin</h1>
+            <p>Manage your projects easily - Update JSON data dynamically</p>
+        </div>
+
+        <div class="admin-content">
+            <div class="instructions">
+                <h3><i class="fas fa-magic"></i> Auto-Sync Enabled!</h3>
+                <p>1. Edit your projects using the cards below<br>
+                2. Changes automatically save to projects.json in real-time<br>
+                3. Your portfolio updates instantly - no manual steps needed!<br>
+                <small style="color: #10b981;"><i class="fas fa-check-circle"></i> Smart auto-sync system active</small></p>
+            </div>
+
+            <div id="section-site" class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-sliders-h"></i>
+                    Site Content
+                </h2>
+                <form id="siteContentForm">
+                    <div class="form-group">
+                        <label>About - Section Title</label>
+                        <input type="text" name="about_sectionTitle" placeholder="About Me">
+                    </div>
+                    <div class="form-group">
+                        <label>About - Section Subtitle</label>
+                        <input type="text" name="about_sectionSubtitle" placeholder="Subtitle">
+                    </div>
+                    <div class="form-group">
+                        <label>About - Intro Heading</label>
+                        <input type="text" name="about_introName" placeholder="Hi, I'm ...">
+                    </div>
+                    <div class="form-group">
+                        <label>About - Paragraph 1</label>
+                        <textarea name="about_introP1" placeholder="Intro paragraph 1"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>About - Paragraph 2</label>
+                        <textarea name="about_introP2" placeholder="Intro paragraph 2"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Company - Name</label>
+                        <input type="text" name="company_name" placeholder="Company Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Company - Role</label>
+                        <input type="text" name="company_role" placeholder="Your Role">
+                    </div>
+                    <div class="form-group">
+                        <label>Company - Duration</label>
+                        <input type="text" name="company_duration" placeholder="2022 - Present">
+                    </div>
+                    <div class="form-group">
+                        <label>Company - Description</label>
+                        <textarea name="company_description" placeholder="Company description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Company - Website</label>
+                        <input type="url" name="company_website" placeholder="https://...">
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-success" id="saveSiteContentBtn">
+                            <i class="fas fa-save"></i> Save Site Content
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="section-projects" class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-folder-open"></i>
+                    Your Projects
+                </h2>
+                
+                <button class="add-project-btn" onclick="openAddModal()">
+                    <i class="fas fa-plus"></i>
+                    Add New Project
+                </button>
+
+                <div class="projects-grid" id="projectsGrid">
+                    <!-- Projects will be loaded here -->
+                </div>
+            </div>
+
+            <div id="section-json" class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-code"></i>
+                    Generated JSON
+                </h2>
+                <div class="json-output" id="jsonOutput"></div>
+                <div style="display: flex; gap: 10px; margin-top: 10px; align-items: center;">
+                    <div id="autoSyncStatus" style="background: #10b981; color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; display: flex; align-items: center; gap: 5px;">
+                        <i class="fas fa-sync-alt fa-spin"></i>
+                        Auto-Sync Active
+                    </div>
+                    <button class="btn copy-btn" onclick="copyJSON()">
+                        <i class="fas fa-copy"></i>
+                        Copy JSON
+                    </button>
+                    <button class="btn" onclick="downloadJSON()" style="background: #6b7280; color: white;">
+                        <i class="fas fa-download"></i>
+                        Manual Backup
+                    </button>
+                </div>
+            </div>
+
+            <!-- Skills Section -->
+            <div id="section-skills" class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-code"></i>
+                    Skills
+                </h2>
+                <div class="form-group">
+                    <label>Category:</label>
+                    <select id="skillsCategorySelect">
+                        <option value="frontend">Frontend</option>
+                        <option value="backend">Backend</option>
+                        <option value="tools">Tools</option>
+                        <option value="design">Design</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="newSkillInput" placeholder="Enter skill name" style="display:inline-block; width:200px; margin-right:10px;">
+                    <button id="addSkillBtn" class="btn btn-primary"><i class="fas fa-plus"></i> Add Skill</button>
+                </div>
+                <div id="skillsList" class="skills-chips"></div>
+            </div>
+
+            <!-- Experience Section -->
+            <div id="section-experience" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-briefcase"></i> Experience Management</h2>
+                    <button class="btn btn-primary" onclick="openExperienceModal()">Add Experience</button>
+                </div>
+                <div id="experienceList" class="projects-grid"></div>
+            </div>
+
+            <!-- Testimonials Section -->
+            <div id="section-testimonials" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-quote-left"></i> Testimonials Management</h2>
+                    <button class="btn btn-primary" onclick="openTestimonialModal()">Add Testimonial</button>
+                </div>
+                <div id="testimonials-list" class="projects-grid"></div>
+            </div>
+
+            <!-- Education Section -->
+            <div id="section-education" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-graduation-cap"></i> Education Management</h2>
+                    <button class="btn btn-primary" onclick="openEducationModal(-1)">Add Education</button>
+                </div>
+                <div id="educationList" class="projects-grid"></div>
+            </div>
+
+            <!-- Certificates Section -->
+            <div id="section-certificates" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-certificate"></i> Certificates Management</h2>
+                    <button class="btn btn-primary" onclick="openCertificateModal(-1)">Add Certificate</button>
+                </div>
+                <div id="certificatesList" class="projects-grid"></div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div id="section-faq" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-question-circle"></i> FAQ Management</h2>
+                    <button class="btn btn-primary" onclick="openFaqModal()">Add FAQ</button>
+                </div>
+                <div id="faq-list" class="projects-grid"></div>
+            </div>
+
+            <!-- Contact Section -->
+            <div id="section-contact" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-envelope"></i> Contact Management</h2>
+                    <button class="btn btn-primary" onclick="openContactModal()">Edit Contact Info</button>
+                </div>
+                <div id="contact-info" class="contact-preview">
+                    <div class="contact-item-preview">
+                        <h4><i class="fas fa-envelope"></i> Email</h4>
+                        <p id="preview-email">info@hssoftware.com</p>
+                    </div>
+                    <div class="contact-item-preview">
+                        <h4><i class="fas fa-phone"></i> Phone</h4>
+                        <p id="preview-phone">+94 77 123 4567</p>
+                    </div>
+                    <div class="contact-item-preview">
+                        <h4><i class="fas fa-map-marker-alt"></i> Location</h4>
+                        <p id="preview-location">Colombo, Sri Lanka</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing Section -->
+            <div id="section-pricing" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-tags"></i> Pricing Management</h2>
+                    <button class="btn btn-primary" onclick="openPricingModal()">Add Pricing Plan</button>
+                </div>
+                <div id="pricing-list" class="projects-grid"></div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <h3>Edit Project</h3>
+            <form id="editForm">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Image URL/Path</label>
+                    <input type="text" name="image" required>
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <select name="status" required>
+                        <option value="completed">Completed</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Duration</label>
+                    <input type="text" name="duration" placeholder="e.g., 3 months" required>
+                </div>
+                <div class="form-group">
+                    <label>Tags (comma separated)</label>
+                    <input type="text" name="tags" placeholder="HTML, CSS, JavaScript" required>
+                </div>
+                <div class="form-group">
+                    <label>Demo URL</label>
+                    <input type="url" name="demo" required>
+                </div>
+                <div class="form-group">
+                    <label>Featured Project</label>
+                    <select name="featured">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-danger" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Education Modal -->
+    <div class="modal" id="educationModal">
+        <div class="modal-content" style="max-width:700px;">
+            <h3 id="eduFormTitle">Add Education</h3>
+            <form id="educationForm">
+                <div class="form-group">
+                    <label>Degree / Program</label>
+                    <input type="text" name="degree" placeholder="BSc in Computer Science" required>
+                </div>
+                <div class="form-group">
+                    <label>Institution</label>
+                    <input type="text" name="institution" placeholder="University name" required>
+                </div>
+                <div class="form-group">
+                    <label>Year / Duration</label>
+                    <input type="text" name="year" placeholder="2020 - 2024" required>
+                </div>
+                <div class="form-group">
+                    <label>Highlights (one per line)</label>
+                    <textarea name="highlights" placeholder="Dean's List\nGPA 3.8+\nAlgorithms & Systems"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-danger" id="eduCancelBtn" onclick="closeEducationModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Experience Modal -->
+    <div class="modal" id="experienceModal">
+        <div class="modal-content" style="max-width:800px;">
+            <div class="modal-header">
+                <h3 id="expFormTitle">Add Experience</h3>
+                <span class="close" onclick="closeExperienceModal()">&times;</span>
+            </div>
+            <form id="experienceForm">
+                <div class="form-group">
+                    <label for="experienceTitle">Job Title *</label>
+                    <input type="text" id="experienceTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="experienceCompany">Company *</label>
+                    <input type="text" id="experienceCompany" required>
+                </div>
+                <div class="form-group">
+                    <label for="experienceDuration">Duration *</label>
+                    <input type="text" id="experienceDuration" placeholder="e.g., 2022 - Present" required>
+                </div>
+                <div class="form-group">
+                    <label for="experienceDescription">Description *</label>
+                    <textarea id="experienceDescription" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="experienceSkills">Skills (one per line)</label>
+                    <textarea id="experienceSkills" rows="3" placeholder="JavaScript\nReact\nNode.js"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="experienceAchievements">Achievements (one per line)</label>
+                    <textarea id="experienceAchievements" rows="3" placeholder="Increased performance by 40%\nLed team of 5 developers"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeExperienceModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Experience</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Testimonial Modal -->
+    <div class="modal" id="testimonialModal">
+        <div class="modal-content" style="max-width:700px;">
+            <div class="modal-header">
+                <h3 id="testimonialModalTitle">Add Testimonial</h3>
+                <span class="close" onclick="closeTestimonialModal()">&times;</span>
+            </div>
+            <form id="testimonialForm">
+                <div class="form-group">
+                    <label for="testimonialName">Client Name *</label>
+                    <input type="text" id="testimonialName" required>
+                </div>
+                <div class="form-group">
+                    <label for="testimonialPosition">Position & Company *</label>
+                    <input type="text" id="testimonialPosition" placeholder="e.g., Product Manager, NexaLabs" required>
+                </div>
+                <div class="form-group">
+                    <label for="testimonialAvatar">Avatar (Initials) *</label>
+                    <input type="text" id="testimonialAvatar" placeholder="e.g., HS" maxlength="3" required>
+                </div>
+                <div class="form-group">
+                    <label for="testimonialRating">Rating *</label>
+                    <select id="testimonialRating" required>
+                        <option value="">Select Rating</option>
+                        <option value="5">5 Stars</option>
+                        <option value="4.5">4.5 Stars</option>
+                        <option value="4">4 Stars</option>
+                        <option value="3.5">3.5 Stars</option>
+                        <option value="3">3 Stars</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="testimonialText">Testimonial Text *</label>
+                    <textarea id="testimonialText" rows="4" required></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeTestimonialModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Testimonial</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FAQ Modal -->
+    <div class="modal" id="faqModal">
+        <div class="modal-content" style="max-width:700px;">
+            <div class="modal-header">
+                <h3 id="faqModalTitle">Add FAQ</h3>
+                <span class="close" onclick="closeFaqModal()">&times;</span>
+            </div>
+            <form id="faqForm">
+                <div class="form-group">
+                    <label for="faqIcon">Icon Class *</label>
+                    <input type="text" id="faqIcon" placeholder="e.g., fas fa-clock" required>
+                </div>
+                <div class="form-group">
+                    <label for="faqQuestion">Question *</label>
+                    <input type="text" id="faqQuestion" placeholder="e.g., Project timelines?" required>
+                </div>
+                <div class="form-group">
+                    <label for="faqAnswer">Answer *</label>
+                    <textarea id="faqAnswer" rows="4" required></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeFaqModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save FAQ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content" style="max-width:600px;">
+            <div class="modal-header">
+                <h3>Edit Contact Information</h3>
+                <span class="close" onclick="closeContactModal()">&times;</span>
+            </div>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="contactEmail">Email *</label>
+                    <input type="email" id="contactEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactPhone">Phone *</label>
+                    <input type="text" id="contactPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactLocation">Location *</label>
+                    <input type="text" id="contactLocation" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactTitle">Section Title</label>
+                    <input type="text" id="contactTitle" placeholder="Get In Touch">
+                </div>
+                <div class="form-group">
+                    <label for="contactSubtitle">Section Subtitle</label>
+                    <input type="text" id="contactSubtitle" placeholder="Ready to start your next project?">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeContactModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Contact Info</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Pricing Modal -->
+    <div class="modal" id="pricingModal">
+        <div class="modal-content" style="max-width:700px;">
+            <div class="modal-header">
+                <h3 id="pricingModalTitle">Add Pricing Plan</h3>
+                <span class="close" onclick="closePricingModal()">&times;</span>
+            </div>
+            <form id="pricingForm">
+                <div class="form-group">
+                    <label for="pricingName">Plan Name *</label>
+                    <input type="text" id="pricingName" required>
+                </div>
+                <div class="form-group">
+                    <label for="pricingDescription">Plan Description *</label>
+                    <input type="text" id="pricingDescription" placeholder="e.g., For Personal Usage" required>
+                </div>
+                <div class="form-group">
+                    <label for="pricingPrice">Price *</label>
+                    <input type="text" id="pricingPrice" placeholder="e.g., $299.99" required>
+                </div>
+                <div class="form-group">
+                    <label for="pricingPeriod">Period *</label>
+                    <input type="text" id="pricingPeriod" placeholder="e.g., Per Month" required>
+                </div>
+                <div class="form-group">
+                    <label for="pricingFeatures">Features (one per line) *</label>
+                    <textarea id="pricingFeatures" rows="5" placeholder="Custom Web Development\nMobile App Development\n24/7 Email Support" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="pricingFeatured">Featured Plan</label>
+                    <select id="pricingFeatured">
+                        <option value="false">No</option>
+                        <option value="true">Yes</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closePricingModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Pricing Plan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Certificate Modal -->
+    <div class="modal" id="certificateModal">
+        <div class="modal-content" style="max-width:700px;">
+            <h3 id="certFormTitle">Add Certificate</h3>
+            <form id="certificateForm">
+                <div class="form-group">
+                    <label>Certificate Title</label>
+                    <input type="text" name="title" placeholder="UWU EXPO 2022 - Exhibition" required>
+                </div>
+                <div class="form-group">
+                    <label>Issuer / Organization</label>
+                    <input type="text" name="issuer" placeholder="UWU EXPO" required>
+                </div>
+                <div class="form-group">
+                    <label>Year</label>
+                    <input type="text" name="year" placeholder="2022" required>
+                </div>
+                <div class="form-group">
+                    <label>Image Path</label>
+                    <input type="text" name="image" placeholder="IMG_20250806_113154_942.jpg">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-danger" id="certCancelBtn" onclick="closeCertificateModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let projects = [];
+        let siteContent = { about: {}, company: {}, skills: { categories: [] }, education: [], certificates: [], experience: [] };
+        let editingIndex = -1;
+
+        // Load projects from JSON
+        async function loadProjects() {
+            try {
+                const response = await fetch('./projects.json');
+                const data = await response.json();
+                projects = data.projects;
+                siteContent = data.siteContent || siteContent;
+                // Ensure required keys exist
+                if (!siteContent.skills) siteContent.skills = { categories: [] };
+                if (!Array.isArray(siteContent.education)) siteContent.education = [];
+                if (!Array.isArray(siteContent.certificates)) siteContent.certificates = [];
+                if (!Array.isArray(siteContent.experience)) siteContent.experience = [];
+                // Seed default data if arrays are empty
+                if (seedDefaultSkills()) {
+                    console.log('Seeded default skills');
+                }
+                if (seedDefaultEducation()) {
+                    console.log('Seeded default education');
+                }
+                if (seedDefaultCertificates()) {
+                    console.log('Seeded default certificates');
+                }
+                if (seedDefaultExperience()) {
+                    console.log('Seeded default experience');
+                }
+                if (seedDefaultTestimonials()) {
+                    console.log('Seeded default testimonials');
+                }
+                if (seedDefaultFaq()) {
+                    console.log('Seeded default FAQ');
+                }
+                if (seedDefaultContact()) {
+                    console.log('Seeded default contact');
+                }
+                if (seedDefaultPricing()) {
+                    console.log('Seeded default pricing');
+                }
+                
+                // Load all sections
+                loadSkills();
+                loadEducation();
+                loadCertificates();
+                loadExperience();
+                loadTestimonials();
+                loadFaq();
+                loadContact();
+                renderPricing();
+                renderProjects();
+                updateJSON();
+                populateSiteContentForm();
+                initializeSkillsEditor();
+                renderEducation();
+                initEducationEvents();
+                renderCertificates();
+                initCertificateEvents();
+                renderExperience();
+                initExperienceEvents();
+            } catch (error) {
+                console.error('Error loading projects:', error);
+                // Initialize with empty array if JSON doesn't exist
+                projects = [];
+                siteContent = { about: {}, company: {}, skills: { categories: [] }, education: [], certificates: [], experience: [] };
+                // Seed defaults as well on fresh state
+                if (seedDefaultSkills()) {
+                    console.log('Seeded default skills');
+                }
+                if (seedDefaultEducation()) {
+                    console.log('Seeded default education');
+                }
+                if (seedDefaultCertificates()) {
+                    console.log('Seeded default certificates');
+                }
+                if (seedDefaultExperience()) {
+                    console.log('Seeded default experience');
+                }
+                if (seedDefaultTestimonials()) {
+                    console.log('Seeded default testimonials');
+                }
+                if (seedDefaultFaq()) {
+                    console.log('Seeded default FAQ');
+                }
+                if (seedDefaultContact()) {
+                    console.log('Seeded default contact');
+                }
+                if (seedDefaultPricing()) {
+                    console.log('Seeded default pricing');
+                }
+                const didSeedCert = seedDefaultCertificates();
+                const didSeedSkills = seedDefaultSkills();
+                const didSeedExp = seedDefaultExperience();
+                renderProjects();
+                updateJSON();
+                populateSiteContentForm();
+                initializeSkillsEditor();
+                renderEducation();
+                initEducationEvents();
+                renderCertificates();
+                initCertificateEvents();
+                renderExperience();
+                initExperienceEvents();
+                if (didSeedEdu || didSeedCert || didSeedSkills || didSeedExp) { autoSaveChanges(); }
+            }
+        }
+
+        // If education list is empty, prefill with the portfolio's current static content
+        function seedDefaultEducation() {
+            if (!Array.isArray(siteContent.education)) siteContent.education = [];
+            if (siteContent.education.length > 0) return false;
+            siteContent.education = [
+                {
+                    degree: 'B.Sc. in Software Engineering',
+                    institution: 'Java Institute For Advanced Technology',
+                    year: '2024 - 2028',
+                    highlights: ['Software Engineering', 'Algorithms', 'Web Development', 'Full-Stack']
+                },
+                {
+                    degree: 'G.C.E. Advanced Level',
+                    institution: 'Haliela Central College Badulla',
+                    year: '2022 - 2024',
+                    highlights: ['Technology Stream', 'SFT', 'ICT', 'ET']
+                },
+                {
+                    degree: 'G.C.E. Ordinary Level',
+                    institution: 'B/Uva Science College - Hali-Ela',
+                    year: '2020',
+                    highlights: ['Mathematics', 'Science', 'English', 'Technology']
+                }
+            ];
+            return true;
+        }
+
+        // If skills are empty, prefill with portfolio's current static skills
+        function seedDefaultSkills() {
+            if (!siteContent.skills) siteContent.skills = { categories: [] };
+            if (!Array.isArray(siteContent.skills.categories)) siteContent.skills.categories = [];
+            if (siteContent.skills.categories.length > 0) return false;
+            
+            siteContent.skills.categories = [
+                {
+                    key: 'frontend',
+                    title: 'Frontend',
+                    items: [
+                        { name: 'HTML5' },
+                        { name: 'CSS3' },
+                        { name: 'JavaScript' },
+                        { name: 'React' },
+                        { name: 'TypeScript' }
+                    ]
+                },
+                {
+                    key: 'backend',
+                    title: 'Backend',
+                    items: [
+                        { name: 'Node.js' },
+                        { name: 'SQL' },
+                        { name: 'MongoDB' }
+                    ]
+                },
+                {
+                    key: 'tools',
+                    title: 'Tools',
+                    items: [
+                        { name: 'Git' },
+                        { name: 'Docker' }
+                    ]
+                },
+                {
+                    key: 'design',
+                    title: 'Design',
+                    items: [
+                        { name: 'Figma' },
+                        { name: 'Photoshop' },
+                        { name: 'Illustrator' },
+                        { name: 'Canva' },
+                        { name: 'UI/UX Design' }
+                    ]
+                }
+            ];
+            return true;
+        }
+
+        // Seed default experience from portfolio's current static content
+        function seedDefaultExperience() {
+            if (!Array.isArray(siteContent.experience)) siteContent.experience = [];
+            if (siteContent.experience.length > 0) return false;
+            siteContent.experience = [
+                {
+                    title: 'Lead Full-Stack Developer',
+                    company: 'SoftCode Pro',
+                    duration: '2022 - Present',
+                    description: 'Architected and delivered scalable web applications, led code reviews, and mentored junior developers in modern development practices.',
+                    skills: ['React', 'Next.js', 'Node.js', 'AWS', 'Docker', 'CI/CD'],
+                    achievements: ['Led team of 5 developers', 'Improved app performance by 40%', 'Delivered 15+ projects on time']
+                },
+                {
+                    title: 'Full-Stack Engineer',
+                    company: 'Freelance',
+                    duration: '2020 - 2022',
+                    description: 'Built bespoke solutions for startups including dashboards, e-commerce platforms, and internal tools with focus on performance and user experience.',
+                    skills: ['TypeScript', 'Python', 'PostgreSQL', 'MongoDB', 'Testing', 'Performance'],
+                    achievements: ['Completed 25+ client projects', '95% client satisfaction rate', 'Built scalable architectures']
+                },
+                {
+                    title: 'Junior Developer',
+                    company: 'Tech Startup',
+                    duration: '2019 - 2020',
+                    description: 'Started my professional journey building responsive web applications and learning modern development workflows in an agile environment.',
+                    skills: ['JavaScript', 'HTML/CSS', 'Git', 'Agile', 'REST APIs'],
+                    achievements: ['Contributed to 10+ features', 'Learned modern frameworks', 'Built responsive interfaces']
+                }
+            ];
+            return true;
+        }
+
+        // Seed default certificates from portfolio's current static content
+        function seedDefaultCertificates() {
+            if (!Array.isArray(siteContent.certificates)) siteContent.certificates = [];
+            if (siteContent.certificates.length > 0) return false;
+            siteContent.certificates = [
+                {
+                    title: 'UWU EXPO 2022 - Exhibition',
+                    issuer: 'UWU EXPO',
+                    year: '2022',
+                    image: 'IMG_20250806_113154_942.jpg'
+                },
+                {
+                    title: 'ALL ISLAND SCHOOL ROBOT COMPETITION',
+                    issuer: 'Ministry of Education',
+                    year: '2023',
+                    image: 'IMG_20250806_113310_893.jpg'
+                },
+                {
+                    title: 'Certificate of Grade 5 Scholarship Examination',
+                    issuer: 'DEPARTMENT OF EXAMINATIONS',
+                    year: '2023',
+                    image: 'IMG_20250806_113328_879.jpg'
+                },
+                {
+                    title: 'ALL ISLAND SCHOOL ROBOT AND INVENTION COMPETITION',
+                    issuer: 'Ministry of Education',
+                    year: '2024',
+                    image: 'IMG_20250806_113227_017.jpg'
+                },
+                {
+                    title: 'Web Application Development',
+                    issuer: 'Ministry of Education',
+                    year: '2023',
+                    image: 'IMG_20250806_113248_278.jpg'
+                },
+                {
+                    title: 'Dhamma School Exam',
+                    issuer: 'Dhamma School',
+                    year: '2022',
+                    image: 'IMG_20250806_113404_606.jpg'
+                },
+                {
+                    title: 'ESOFT METRO CAMPUS is a Pearson Assured organisation',
+                    issuer: 'ESOFT METRO CAMPUS',
+                    year: '2023',
+                    image: 'IMG_20250806_113437_266.jpg'
+                },
+                {
+                    title: 'All Island School Drawing Competition',
+                    issuer: 'All Island School',
+                    year: '2022',
+                    image: 'IMG_20250806_113502_271.jpg'
+                },
+                {
+                    title: 'ART COMPETITION',
+                    issuer: 'Se Ian Bank PLC',
+                    year: '2023',
+                    image: 'IMG_20250806_113421_212.jpg'
+                }
+            ];
+            return true;
+        }
+
+        // Render projects grid
+        function renderProjects() {
+            const grid = document.getElementById('projectsGrid');
+            grid.innerHTML = '';
+
+            projects.forEach((project, index) => {
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                card.innerHTML = `
+                    <div class="project-header">
+                        <div>
+                            <h3 class="project-title">${escapeHtml(project.title)}</h3>
+                            <span class="project-status status-${project.status}">${formatStatus(project.status)}</span>
+                        </div>
+                    </div>
+                    <div class="project-description description">${escapeHtml(project.description || '')}</div>
+                    <div class="project-tags">
+                        ${Array.isArray(project.tags) ? project.tags.map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join('') : ''}
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn btn-primary" onclick="editProject(${index})">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-danger" onclick="deleteProject(${index})">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // ===== Education Editor =====
+        let editingEduIndex = -1;
+
+        function loadEducation() {
+            renderEducation();
+        }
+
+        function renderEducation() {
+            const list = document.getElementById('educationList');
+            if (!list) return;
+            list.innerHTML = '';
+            const edu = Array.isArray(siteContent.education) ? siteContent.education : [];
+
+            if (edu.length === 0) {
+                const empty = document.createElement('div');
+                empty.className = 'project-card';
+                empty.innerHTML = '<p style="color:#6b7280">No education entries yet. Click "Add Education" to create one.</p>';
+                list.appendChild(empty);
+                return;
+            }
+
+            edu.forEach((item, idx) => {
+                const card = document.createElement('div');
+                card.className = 'project-card education-card';
+                card.innerHTML = `
+                    <div class="project-header">
+                        <div>
+                            <h3 class="project-title">${escapeHtml(item.degree || '')}</h3>
+                            <div class="education-meta">
+                                <span class="education-institution">
+                                    <i class="fas fa-university"></i> ${escapeHtml(item.institution || '')}
+                                </span>
+                                <span class="education-year">
+                                    <i class="fas fa-calendar-alt"></i> ${escapeHtml(item.year || '')}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    ${(item.highlights && item.highlights.length) ? `
+                        <div class="education-highlights">
+                            <div class="project-tags">
+                                ${item.highlights.map(h => `<span class=\"tag\">${escapeHtml(h)}</span>`).join('')}
+                            </div>
+                        </div>` : ''}
+                    <div class="project-actions">
+                        <button class="btn btn-primary" data-edu-edit="${idx}"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="btn btn-danger" data-edu-del="${idx}"><i class="fas fa-trash"></i> Delete</button>
+                    </div>
+                `;
+                list.appendChild(card);
+            });
+
+            // Bind edit/delete
+            list.querySelectorAll('[data-edu-edit]').forEach(btn => {
+                btn.addEventListener('click', () => openEducationModal(parseInt(btn.getAttribute('data-edu-edit'), 10)));
+            });
+            list.querySelectorAll('[data-edu-del]').forEach(btn => {
+                btn.addEventListener('click', () => deleteEducation(parseInt(btn.getAttribute('data-edu-del'), 10)));
+            });
+        }
+
+        function initEducationEvents() {
+            const addBtn = document.getElementById('eduAddBtn');
+            const cancelBtn = document.getElementById('eduCancelBtn');
+            const form = document.getElementById('educationForm');
+            if (addBtn) addBtn.addEventListener('click', () => openEducationModal(-1));
+            if (cancelBtn) cancelBtn.addEventListener('click', closeEducationModal);
+            if (form) form.addEventListener('submit', saveEducation);
+        }
+
+        function openEducationModal(index) {
+            editingEduIndex = index;
+            const modal = document.getElementById('educationModal');
+            const form = document.getElementById('educationForm');
+            const title = document.getElementById('eduFormTitle');
+            const edu = siteContent.education || [];
+            if (index >= 0 && edu[index]) {
+                const item = edu[index];
+                form.degree.value = item.degree || '';
+                form.institution.value = item.institution || '';
+                form.year.value = item.year || '';
+                form.highlights.value = (item.highlights || []).join('\n');
+                title.textContent = 'Edit Education';
+            } else {
+                form.reset();
+                title.textContent = 'Add Education';
+            }
+            modal.style.display = 'block';
+        }
+
+        function closeEducationModal() {
+            document.getElementById('educationModal').style.display = 'none';
+        }
+
+        function saveEducation(e) {
+            e.preventDefault();
+            const form = document.getElementById('educationForm');
+            const entry = {
+                degree: form.degree.value.trim(),
+                institution: form.institution.value.trim(),
+                year: form.year.value.trim(),
+                highlights: (form.highlights.value || '').split('\n').map(s => s.trim()).filter(Boolean)
+            };
+
+            if (!Array.isArray(siteContent.education)) siteContent.education = [];
+            if (editingEduIndex >= 0 && siteContent.education[editingEduIndex]) {
+                siteContent.education[editingEduIndex] = entry;
+            } else {
+                siteContent.education.push(entry);
+            }
+
+            updateJSON();
+            autoSaveChanges();
+            closeEducationModal();
+            renderEducation();
+        }
+
+        function deleteEducation(index) {
+            if (!Array.isArray(siteContent.education)) return;
+            if (confirm('Delete this education entry?')) {
+                siteContent.education.splice(index, 1);
+                updateJSON();
+                autoSaveChanges();
+                renderEducation();
+            }
+        }
+
+        // ===== Experience Editor =====
+        let editingExpIndex = -1;
+
+        function loadExperience() {
+            renderExperience();
+        }
+
+        function renderExperience() {
+            const list = document.getElementById('experienceList');
+            if (!list) return;
+            list.innerHTML = '';
+            const exps = Array.isArray(siteContent.experience) ? siteContent.experience : [];
+
+            if (exps.length === 0) {
+                const empty = document.createElement('div');
+                empty.className = 'project-card';
+                empty.innerHTML = '<p style="color:#6b7280">No experience entries yet. Click "Add Experience" to create one.</p>';
+                list.appendChild(empty);
+                return;
+            }
+
+            exps.forEach((item, idx) => {
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                card.innerHTML = `
+                    <div class="project-header">
+                        <div>
+                            <h3 class="project-title">${escapeHtml(item.title || '')}</h3>
+                            <span class="tag">${escapeHtml(item.company || '')}</span>
+                            <span class="tag">${escapeHtml(item.duration || '')}</span>
+                        </div>
+                    </div>
+                    ${item.description ? `<div class=\"project-description description\">${escapeHtml(item.description)}</div>` : ''}
+                    ${Array.isArray(item.skills) && item.skills.length > 0 ? `
+                        <div class="project-tags">
+                            ${item.skills.slice(0, 4).map(s => `<span class="tag">${escapeHtml(s)}</span>`).join('')}
+                            ${item.skills.length > 4 ? `<span class="tag">+${item.skills.length - 4} more</span>` : ''}
+                        </div>
+                    ` : ''}
+                    <div class="project-actions">
+                        <button class="btn btn-primary" data-exp-edit="${idx}"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="btn btn-danger" data-exp-del="${idx}"><i class="fas fa-trash"></i> Delete</button>
+                    </div>
+                `;
+                list.appendChild(card);
+            });
+
+            // Bind edit/delete
+            list.querySelectorAll('[data-exp-edit]').forEach(btn => {
+                btn.addEventListener('click', () => openExperienceModal(parseInt(btn.getAttribute('data-exp-edit'), 10)));
+            });
+            list.querySelectorAll('[data-exp-del]').forEach(btn => {
+                btn.addEventListener('click', () => deleteExperience(parseInt(btn.getAttribute('data-exp-del'), 10)));
+            });
+        }
+
+        function initExperienceEvents() {
+            const addBtn = document.getElementById('expAddBtn');
+            const cancelBtn = document.getElementById('expCancelBtn');
+            const form = document.getElementById('experienceForm');
+            if (addBtn) addBtn.addEventListener('click', () => openExperienceModal(-1));
+            if (cancelBtn) cancelBtn.addEventListener('click', closeExperienceModal);
+            if (form) form.addEventListener('submit', saveExperience);
+        }
+
+        function openExperienceModal(index) {
+            editingExpIndex = index;
+            const modal = document.getElementById('experienceModal');
+            const form = document.getElementById('experienceForm');
+            const title = document.getElementById('expFormTitle');
+            const exps = siteContent.experience || [];
+            if (index >= 0 && exps[index]) {
+                const item = exps[index];
+                form.title.value = item.title || '';
+                form.company.value = item.company || '';
+                form.duration.value = item.duration || '';
+                form.description.value = item.description || '';
+                form.skills.value = Array.isArray(item.skills) ? item.skills.join('\n') : '';
+                form.achievements.value = Array.isArray(item.achievements) ? item.achievements.join('\n') : '';
+                title.textContent = 'Edit Experience';
+            } else {
+                form.reset();
+                title.textContent = 'Add Experience';
+            }
+            modal.style.display = 'block';
+        }
+
+        function closeExperienceModal() {
+            document.getElementById('experienceModal').style.display = 'none';
+        }
+
+        function saveExperience(e) {
+            e.preventDefault();
+            const form = document.getElementById('experienceForm');
+            const entry = {
+                title: form.title.value.trim(),
+                company: form.company.value.trim(),
+                duration: form.duration.value.trim(),
+                description: form.description.value.trim(),
+                skills: form.skills.value.trim() ? form.skills.value.trim().split('\n').map(s => s.trim()).filter(s => s) : [],
+                achievements: form.achievements.value.trim() ? form.achievements.value.trim().split('\n').map(s => s.trim()).filter(s => s) : []
+            };
+
+            if (!Array.isArray(siteContent.experience)) siteContent.experience = [];
+            if (editingExpIndex >= 0 && siteContent.experience[editingExpIndex]) {
+                siteContent.experience[editingExpIndex] = entry;
+            } else {
+                siteContent.experience.push(entry);
+            }
+
+            loadSkills();
+            loadEducation();
+            loadCertificates();
+            loadExperience();
+            loadTestimonials();
+            updateJSON();
+            autoSaveChanges();
+            closeExperienceModal();
+            renderExperience();
+        }
+
+        function deleteExperience(index) {
+            if (!Array.isArray(siteContent.experience)) return;
+            if (confirm('Delete this experience entry?')) {
+                siteContent.experience.splice(index, 1);
+                updateJSON();
+                autoSaveChanges();
+                renderExperience();
+            }
+        }
+
+        // ===== Certificates Editor =====
+        let editingCertIndex = -1;
+
+        function loadCertificates() {
+            renderCertificates();
+        }
+
+        function renderCertificates() {
+            const list = document.getElementById('certificatesList');
+            if (!list) return;
+            list.innerHTML = '';
+            const certs = Array.isArray(siteContent.certificates) ? siteContent.certificates : [];
+
+            if (certs.length === 0) {
+                const empty = document.createElement('div');
+                empty.className = 'project-card';
+                empty.innerHTML = '<p style="color:#6b7280">No certificates yet. Click "Add Certificate" to create one.</p>';
+                list.appendChild(empty);
+                return;
+            }
+
+            certs.forEach((item, idx) => {
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                card.innerHTML = `
+                    <div class="project-header">
+                        <div>
+                            <h3 class="project-title">${escapeHtml(item.title || '')}</h3>
+                            <span class="tag">${escapeHtml(item.issuer || '')}</span>
+                            <span class="tag">${escapeHtml(item.year || '')}</span>
+                        </div>
+                    </div>
+                    ${item.image ? `<div class=\"project-description\">${escapeHtml(item.image)}</div>` : ''}
+                    <div class="project-actions">
+                        <button class="btn btn-primary" data-cert-edit="${idx}"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="btn btn-danger" data-cert-del="${idx}"><i class="fas fa-trash"></i> Delete</button>
+                    </div>
+                `;
+                list.appendChild(card);
+            });
+
+            // Bind edit/delete
+            list.querySelectorAll('[data-cert-edit]').forEach(btn => {
+                btn.addEventListener('click', () => openCertificateModal(parseInt(btn.getAttribute('data-cert-edit'), 10)));
+            });
+            list.querySelectorAll('[data-cert-del]').forEach(btn => {
+                btn.addEventListener('click', () => deleteCertificate(parseInt(btn.getAttribute('data-cert-del'), 10)));
+            });
+        }
+
+        function initCertificateEvents() {
+            const addBtn = document.getElementById('certAddBtn');
+            const cancelBtn = document.getElementById('certCancelBtn');
+            const form = document.getElementById('certificateForm');
+            if (addBtn) addBtn.addEventListener('click', () => openCertificateModal(-1));
+            if (cancelBtn) cancelBtn.addEventListener('click', closeCertificateModal);
+            if (form) form.addEventListener('submit', saveCertificate);
+        }
+
+        function openCertificateModal(index) {
+            editingCertIndex = index;
+            const modal = document.getElementById('certificateModal');
+            const form = document.getElementById('certificateForm');
+            const title = document.getElementById('certFormTitle');
+            const certs = siteContent.certificates || [];
+            if (index >= 0 && certs[index]) {
+                const item = certs[index];
+                form.title.value = item.title || '';
+                form.issuer.value = item.issuer || '';
+                form.year.value = item.year || '';
+                form.image.value = item.image || '';
+                title.textContent = 'Edit Certificate';
+            } else {
+                form.reset();
+                title.textContent = 'Add Certificate';
+            }
+            modal.style.display = 'block';
+        }
+
+        function closeCertificateModal() {
+            document.getElementById('certificateModal').style.display = 'none';
+        }
+
+        function saveCertificate(e) {
+            e.preventDefault();
+            const form = document.getElementById('certificateForm');
+            const entry = {
+                title: form.title.value.trim(),
+                issuer: form.issuer.value.trim(),
+                year: form.year.value.trim(),
+                image: form.image.value.trim()
+            };
+
+            if (!Array.isArray(siteContent.certificates)) siteContent.certificates = [];
+            if (editingCertIndex >= 0 && siteContent.certificates[editingCertIndex]) {
+                siteContent.certificates[editingCertIndex] = entry;
+            } else {
+                siteContent.certificates.push(entry);
+            }
+
+            updateJSON();
+            autoSaveChanges();
+            closeCertificateModal();
+            renderCertificates();
+        }
+
+        function deleteCertificate(index) {
+            if (!Array.isArray(siteContent.certificates)) return;
+            if (confirm('Delete this certificate?')) {
+                siteContent.certificates.splice(index, 1);
+                updateJSON();
+                autoSaveChanges();
+                renderCertificates();
+            }
+        }
+
+        // ===== Pricing Editor =====
+        let currentPricingIndex = -1;
+
+        function seedDefaultPricing() {
+            if (!Array.isArray(siteContent.pricing)) siteContent.pricing = [];
+            if (siteContent.pricing.length > 0) return false;
+            
+            siteContent.pricing = [
+                {
+                    name: 'Standard',
+                    description: 'For Personal Usage',
+                    price: '$299.99',
+                    period: 'Per Month',
+                    features: ['Custom Web Development', 'Mobile App Development', '24/7 Email Support', 'Basic Maintenance'],
+                    featured: false
+                },
+                {
+                    name: 'Premium',
+                    description: 'For Small Business',
+                    price: '$499.99',
+                    period: 'Per Month',
+                    features: ['Full Stack Development', 'Database Management', '24/7 Priority Support', 'Advanced Security'],
+                    featured: true
+                },
+                {
+                    name: 'Exclusive',
+                    description: 'For Enterprise Level',
+                    price: '$799.99',
+                    period: 'Per Month',
+                    features: ['Enterprise Solutions', 'Cloud Infrastructure', '24/7 Dedicated Support', 'Custom Integrations'],
+                    featured: false
+                },
+                {
+                    name: 'Ultimate',
+                    description: 'For Large Corporations',
+                    price: '$1299.99',
+                    period: 'Per Month',
+                    features: ['Full-Scale Architecture', 'Multi-Platform Solutions', '24/7 Premium Support', 'Advanced Analytics'],
+                    featured: true
+                }
+            ];
+            return true;
+        }
+
+        function renderPricing() {
+            const pricingList = document.getElementById('pricing-list');
+            if (!pricingList) return;
+            
+            const pricing = Array.isArray(siteContent.pricing) ? siteContent.pricing : [];
+            
+            pricingList.innerHTML = pricing.map((plan, index) => `
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>${escapeHtml(plan.name || '')}</h3>
+                        ${plan.featured ? '<span class="featured-badge">Featured</span>' : ''}
+                    </div>
+                    <div class="project-meta">
+                        <p><strong>Description:</strong> ${escapeHtml(plan.description || '')}</p>
+                        <p><strong>Price:</strong> ${escapeHtml(plan.price || '')} ${escapeHtml(plan.period || '')}</p>
+                        <p><strong>Features:</strong> ${Array.isArray(plan.features) ? plan.features.length : 0} items</p>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn btn-sm btn-primary" onclick="editPricing(${index})">Edit</button>
+                        <button class="btn btn-sm btn-danger" onclick="deletePricing(${index})">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openPricingModal(index = -1) {
+            const modal = document.getElementById('pricingModal');
+            const title = document.getElementById('pricingModalTitle');
+            
+            currentPricingIndex = index;
+            
+            if (index >= 0) {
+                title.textContent = 'Edit Pricing Plan';
+                const plan = siteContent.pricing[index];
+                document.getElementById('pricingName').value = plan.name || '';
+                document.getElementById('pricingDescription').value = plan.description || '';
+                document.getElementById('pricingPrice').value = plan.price || '';
+                document.getElementById('pricingPeriod').value = plan.period || '';
+                document.getElementById('pricingFeatures').value = Array.isArray(plan.features) ? plan.features.join('\n') : '';
+                document.getElementById('pricingFeatured').value = plan.featured ? 'true' : 'false';
+            } else {
+                title.textContent = 'Add Pricing Plan';
+                document.getElementById('pricingForm').reset();
+            }
+            
+            modal.style.display = 'block';
+        }
+
+        function closePricingModal() {
+            document.getElementById('pricingModal').style.display = 'none';
+            currentPricingIndex = -1;
+        }
+
+        function editPricing(index) {
+            openPricingModal(index);
+        }
+
+        function deletePricing(index) {
+            if (!Array.isArray(siteContent.pricing)) return;
+            if (confirm('Delete this pricing plan?')) {
+                siteContent.pricing.splice(index, 1);
+                updateJSON();
+                autoSaveChanges();
+                renderPricing();
+            }
+        }
+
+        // Pricing form submission
+        document.getElementById('pricingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const planData = {
+                name: document.getElementById('pricingName').value,
+                description: document.getElementById('pricingDescription').value,
+                price: document.getElementById('pricingPrice').value,
+                period: document.getElementById('pricingPeriod').value,
+                features: document.getElementById('pricingFeatures').value.split('\n').filter(f => f.trim()),
+                featured: document.getElementById('pricingFeatured').value === 'true'
+            };
+            
+            if (!Array.isArray(siteContent.pricing)) siteContent.pricing = [];
+            
+            if (currentPricingIndex >= 0) {
+                siteContent.pricing[currentPricingIndex] = planData;
+            } else {
+                siteContent.pricing.push(planData);
+            }
+            
+            updateJSON();
+            autoSaveChanges();
+            renderPricing();
+            closePricingModal();
+        });
+
+        // ===== Contact Editor =====
+        function seedDefaultContact() {
+            if (!siteContent.contact) siteContent.contact = {};
+            if (Object.keys(siteContent.contact).length > 0) return false;
+            
+            siteContent.contact = {
+                email: 'info@hssoftware.com',
+                phone: '+94 77 123 4567',
+                location: 'Colombo, Sri Lanka',
+                title: 'Get In Touch',
+                subtitle: 'Ready to start your next project? Let\'s discuss your requirements'
+            };
+            return true;
+        }
+
+        function loadContact() {
+            const contact = siteContent.contact || {};
+            document.getElementById('preview-email').textContent = contact.email || 'info@hssoftware.com';
+            document.getElementById('preview-phone').textContent = contact.phone || '+94 77 123 4567';
+            document.getElementById('preview-location').textContent = contact.location || 'Colombo, Sri Lanka';
+        }
+
+        function openContactModal() {
+            const modal = document.getElementById('contactModal');
+            const contact = siteContent.contact || {};
+            
+            document.getElementById('contactEmail').value = contact.email || 'info@hssoftware.com';
+            document.getElementById('contactPhone').value = contact.phone || '+94 77 123 4567';
+            document.getElementById('contactLocation').value = contact.location || 'Colombo, Sri Lanka';
+            document.getElementById('contactTitle').value = contact.title || 'Get In Touch';
+            document.getElementById('contactSubtitle').value = contact.subtitle || 'Ready to start your next project? Let\'s discuss your requirements';
+            
+            modal.style.display = 'block';
+        }
+
+        function closeContactModal() {
+            document.getElementById('contactModal').style.display = 'none';
+        }
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            siteContent.contact = {
+                email: document.getElementById('contactEmail').value,
+                phone: document.getElementById('contactPhone').value,
+                location: document.getElementById('contactLocation').value,
+                title: document.getElementById('contactTitle').value,
+                subtitle: document.getElementById('contactSubtitle').value
+            };
+            
+            loadContact();
+            saveToJSON();
+            closeContactModal();
+        });
+
+        // ===== FAQ Editor =====
+        let currentFaqIndex = -1;
+
+        function seedDefaultFaq() {
+            if (!Array.isArray(siteContent.faq)) siteContent.faq = [];
+            if (siteContent.faq.length > 0) return false;
+            
+            siteContent.faq = [
+                {
+                    icon: 'fas fa-clock',
+                    question: 'Project timelines?',
+                    answer: 'Typical web projects take 2–6 weeks depending on scope. I share a clear milestone plan with weekly updates.'
+                },
+                {
+                    icon: 'fas fa-handshake',
+                    question: 'How do we start?',
+                    answer: 'We begin with a 30‑minute discovery call, finalize requirements, and I provide a fixed quote or hourly plan.'
+                },
+                {
+                    icon: 'fas fa-code',
+                    question: 'Tech stack & handover?',
+                    answer: 'Modern stack (React/Node/DB) with clean documentation. I provide source code, deployment guides, and a short handover session.'
+                }
+            ];
+            return true;
+        }
+
+        function loadFaq() {
+            const faqList = document.getElementById('faq-list');
+            if (!faqList) return;
+            
+            const faqs = siteContent.faq || [];
+            faqList.innerHTML = '';
+            
+            if (faqs.length === 0) {
+                const empty = document.createElement('div');
+                empty.className = 'project-card';
+                empty.innerHTML = '<p style="color:#6b7280; padding: 2rem; text-align: center;">No FAQs yet. Click "Add FAQ" to create one.</p>';
+                faqList.appendChild(empty);
+                return;
+            }
+            
+            faqs.forEach((faq, index) => {
+                const card = document.createElement('div');
+                card.className = 'project-card faq-card';
+                card.innerHTML = `
+                    <div class="project-header">
+                        <div class="faq-question">
+                            <div class="faq-icon">
+                                <i class="${escapeHtml(faq.icon || 'fas fa-question')}"></i>
+                            </div>
+                            <h3 class="project-title">${escapeHtml(faq.question || 'No question')}</h3>
+                        </div>
+                    </div>
+                    <div class="project-description faq-answer-preview">${escapeHtml(faq.answer || 'No answer')}</div>
+                    <div class="project-actions">
+                        <button class="btn btn-primary" onclick="editFaq(${index})">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-danger" onclick="deleteFaq(${index})">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
+                `;
+                faqList.appendChild(card);
+            });
+        }
+
+        function openFaqModal(index = -1) {
+            currentFaqIndex = index;
+            const modal = document.getElementById('faqModal');
+            const title = document.getElementById('faqModalTitle');
+            const form = document.getElementById('faqForm');
+            
+            if (index >= 0) {
+                const faq = siteContent.faq[index];
+                title.textContent = 'Edit FAQ';
+                document.getElementById('faqIcon').value = faq.icon || '';
+                document.getElementById('faqQuestion').value = faq.question || '';
+                document.getElementById('faqAnswer').value = faq.answer || '';
+            } else {
+                title.textContent = 'Add FAQ';
+                form.reset();
+            }
+            
+            modal.style.display = 'block';
+        }
+
+        function closeFaqModal() {
+            document.getElementById('faqModal').style.display = 'none';
+            currentFaqIndex = -1;
+        }
+
+        function editFaq(index) {
+            openFaqModal(index);
+        }
+
+        function deleteFaq(index) {
+            if (confirm('Are you sure you want to delete this FAQ?')) {
+                siteContent.faq.splice(index, 1);
+                loadFaq();
+                saveToJSON();
+            }
+        }
+
+        // FAQ form submission
+        document.getElementById('faqForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const faqData = {
+                icon: document.getElementById('faqIcon').value,
+                question: document.getElementById('faqQuestion').value,
+                answer: document.getElementById('faqAnswer').value
+            };
+            
+            if (currentFaqIndex >= 0) {
+                siteContent.faq[currentFaqIndex] = faqData;
+            } else {
+                if (!Array.isArray(siteContent.faq)) {
+                    siteContent.faq = [];
+                }
+                siteContent.faq.push(faqData);
+            }
+            
+            loadFaq();
+            saveToJSON();
+            closeFaqModal();
+        });
+
+        // ===== Testimonials Editor =====
+        let currentTestimonialIndex = -1;
+
+        function loadTestimonials() {
+            const testimonialsList = document.getElementById('testimonials-list');
+            if (!testimonialsList) return;
+            
+            const testimonials = siteContent.testimonials || [];
+            testimonialsList.innerHTML = '';
+            
+            if (testimonials.length === 0) {
+                const empty = document.createElement('div');
+                empty.className = 'project-card';
+                empty.innerHTML = '<p style="color:#6b7280; padding: 2rem; text-align: center;">No testimonials yet. Click "Add Testimonial" to create one.</p>';
+                testimonialsList.appendChild(empty);
+                return;
+            }
+            
+            testimonials.forEach((testimonial, index) => {
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                card.innerHTML = `
+                    <div class="project-header">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div class="testimonial-avatar">${escapeHtml(testimonial.avatar || 'NA')}</div>
+                            <div>
+                                <h3 class="project-title">${escapeHtml(testimonial.name || 'Unknown')}</h3>
+                                <div class="testimonial-position">${escapeHtml(testimonial.position || 'No position')}</div>
+                                <div class="testimonial-rating">
+                                    ${generateStars(testimonial.rating || 5)}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-description testimonial-text">${escapeHtml(testimonial.text || 'No testimonial text')}</div>
+                    <div class="project-actions">
+                        <button class="btn btn-primary" onclick="editTestimonial(${index})">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-danger" onclick="deleteTestimonial(${index})">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
+                `;
+                testimonialsList.appendChild(card);
+            });
+        }
+
+        function seedDefaultTestimonials() {
+            if (!Array.isArray(siteContent.testimonials)) siteContent.testimonials = [];
+            if (siteContent.testimonials.length > 0) return false;
+            
+            siteContent.testimonials = [
+                {
+                    name: 'Dinuka Perera',
+                    position: 'Product Manager, NexaLabs',
+                    avatar: 'HS',
+                    rating: 5,
+                    text: 'Delivery was on time and the code quality was excellent. Heshan quickly understood our business needs and shipped a performant, scalable solution.'
+                },
+                {
+                    name: 'Anjalee Karunaratne',
+                    position: 'Founder, FitLife',
+                    avatar: 'AK',
+                    rating: 4.5,
+                    text: 'Great collaboration and clear communication throughout. The mobile app feels polished and the UX is spot on.'
+                },
+                {
+                    name: 'Ravindu Madushan',
+                    position: 'CTO, ShopNow',
+                    avatar: 'RM',
+                    rating: 5,
+                    text: 'From architecture to deployment, Heshan handled everything professionally. Highly recommend for full‑stack projects.'
+                }
+            ];
+            return true;
+        }
+
+
+        function generateStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            let stars = '';
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star"></i>';
+            }
+            
+            if (hasHalfStar) {
+                stars += '<i class="fas fa-star-half-alt"></i>';
+            }
+            
+            const emptyStars = 5 - Math.ceil(rating);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="far fa-star"></i>';
+            }
+            
+            return stars;
+        }
+
+        function openTestimonialModal(index = -1) {
+            currentTestimonialIndex = index;
+            const modal = document.getElementById('testimonialModal');
+            const title = document.getElementById('testimonialModalTitle');
+            const form = document.getElementById('testimonialForm');
+            
+            if (index >= 0) {
+                const testimonial = siteContent.testimonials[index];
+                title.textContent = 'Edit Testimonial';
+                document.getElementById('testimonialName').value = testimonial.name || '';
+                document.getElementById('testimonialPosition').value = testimonial.position || '';
+                document.getElementById('testimonialAvatar').value = testimonial.avatar || '';
+                document.getElementById('testimonialRating').value = testimonial.rating || '';
+                document.getElementById('testimonialText').value = testimonial.text || '';
+            } else {
+                title.textContent = 'Add Testimonial';
+                form.reset();
+            }
+            
+            modal.style.display = 'block';
+        }
+
+        function closeTestimonialModal() {
+            document.getElementById('testimonialModal').style.display = 'none';
+            currentTestimonialIndex = -1;
+        }
+
+        function editTestimonial(index) {
+            openTestimonialModal(index);
+        }
+
+        function deleteTestimonial(index) {
+            if (confirm('Are you sure you want to delete this testimonial?')) {
+                siteContent.testimonials.splice(index, 1);
+                loadTestimonials();
+                saveToJSON();
+            }
+        }
+
+        // Testimonial form submission
+        document.getElementById('testimonialForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const testimonialData = {
+                name: document.getElementById('testimonialName').value,
+                position: document.getElementById('testimonialPosition').value,
+                avatar: document.getElementById('testimonialAvatar').value,
+                rating: parseFloat(document.getElementById('testimonialRating').value),
+                text: document.getElementById('testimonialText').value
+            };
+            
+            if (currentTestimonialIndex >= 0) {
+                siteContent.testimonials[currentTestimonialIndex] = testimonialData;
+            } else {
+                if (!Array.isArray(siteContent.testimonials)) {
+                    siteContent.testimonials = [];
+                }
+                siteContent.testimonials.push(testimonialData);
+            }
+            
+            loadTestimonials();
+            saveToJSON();
+            closeTestimonialModal();
+        });
+
+        // util: escape HTML for safe rendering
+        function escapeHtml(str) {
+            return String(str || '').replace(/[&<>"]/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[s]));
+        }
+
+        // Format status for display
+        function formatStatus(status) {
+            switch(status) {
+                case 'completed': return 'Completed';
+                case 'in-progress': return 'In Progress';
+                case 'pending': return 'Pending';
+                default: return 'Unknown';
+            }
+        }
+
+        // Edit project
+        function editProject(index) {
+            editingIndex = index;
+            const project = projects[index];
+            const form = document.getElementById('editForm');
+            
+            form.title.value = project.title;
+            form.description.value = project.description;
+            form.image.value = project.image;
+            form.status.value = project.status;
+            form.duration.value = project.duration;
+            form.tags.value = project.tags.join(', ');
+            form.demo.value = project.links.demo;
+            form.featured.value = project.featured;
+
+            document.getElementById('editModal').style.display = 'block';
+        }
+
+        // Add new project
+        function openAddModal() {
+            editingIndex = -1;
+            document.getElementById('editForm').reset();
+            document.getElementById('editModal').style.display = 'block';
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('editModal').style.display = 'none';
+        }
+
+        // Delete project with auto-save
+        function deleteProject(index) {
+            if (confirm('Are you sure you want to delete this project?')) {
+                projects.splice(index, 1);
+                renderProjects();
+                updateJSON();
+                autoSaveChanges();
+            }
+        }
+
+        // Handle form submission with auto-save
+        document.getElementById('editForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const projectData = {
+                title: formData.get('title'),
+                description: formData.get('description'),
+                image: formData.get('image'),
+                alt: formData.get('title') + ' preview',
+                status: formData.get('status'),
+                duration: formData.get('duration'),
+                tags: formData.get('tags').split(',').map(tag => tag.trim()),
+                stats: [
+                    { value: "95%", label: "Quality" },
+                    { value: "100%", label: "Satisfaction" }
+                ],
+                links: {
+                    demo: formData.get('demo'),
+                    github: ""
+                },
+                featured: formData.get('featured') === 'true',
+                visible: true
+            };
+
+            if (editingIndex === -1) {
+                // Add new project
+                const newId = projects.length > 0 ? Math.max(...projects.map(p => p.id)) + 1 : 1;
+                projectData.id = newId;
+                projects.push(projectData);
+            } else {
+                // Update existing project
+                projectData.id = projects[editingIndex].id;
+                projects[editingIndex] = projectData;
+            }
+
+            renderProjects();
+            updateJSON();
+            closeModal();
+            
+            // Auto-save after changes
+            autoSaveChanges();
+        });
+
+        // Update JSON output
+        function updateJSON() {
+            const jsonOutput = document.getElementById('jsonOutput');
+            const jsonData = {
+                projects: projects,
+                siteContent: siteContent
+            };
+            jsonOutput.textContent = JSON.stringify(jsonData, null, 2);
+        }
+
+        // Copy JSON to clipboard
+        function copyJSON() {
+            const jsonOutput = document.getElementById('jsonOutput');
+            navigator.clipboard.writeText(jsonOutput.textContent).then(() => {
+                alert('JSON copied to clipboard!');
+            });
+        }
+
+        // File handle for automatic updates
+        let fileHandle = null;
+
+        // Auto update JSON file - Smart fallback system
+        async function autoUpdateFile() {
+            const jsonOutput = document.getElementById('jsonOutput');
+            const jsonData = jsonOutput.textContent;
+            const btn = document.getElementById('autoUpdateBtn');
+            
+            // Check browser support first
+            if (!window.showSaveFilePicker) {
+                // Fallback to automatic download with better UX
+                showBrowserNotSupportedDialog();
+                return;
+            }
+
+            try {
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Updating...';
+                btn.disabled = true;
+
+                // If no file handle, ask user to select the file
+                if (!fileHandle) {
+                    fileHandle = await window.showSaveFilePicker({
+                        suggestedName: 'projects.json',
+                        types: [{
+                            description: 'JSON files',
+                            accept: { 'application/json': ['.json'] }
+                        }]
+                    });
+                }
+
+                // Write to the file
+                const writable = await fileHandle.createWritable();
+                await writable.write(jsonData);
+                await writable.close();
+
+                btn.innerHTML = '<i class="fas fa-check"></i> Updated Successfully!';
+                btn.style.background = '#10b981';
+                
+                // Show success message
+                showSuccessMessage('JSON file updated successfully! Your portfolio will reflect changes on next refresh.');
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-magic"></i> Auto Update JSON File';
+                    btn.style.background = '#48bb78';
+                    btn.disabled = false;
+                }, 3000);
+
+            } catch (error) {
+                console.error('Error updating file:', error);
+                btn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Update Failed';
+                btn.style.background = '#ef4444';
+                
+                if (error.name === 'AbortError') {
+                    showCancelledMessage();
+                } else {
+                    showErrorDialog(error.message);
+                }
+                
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-magic"></i> Auto Update JSON File';
+                    btn.style.background = '#48bb78';
+                    btn.disabled = false;
+                }, 3000);
+            }
+        }
+
+        // Show browser not supported dialog
+        function showBrowserNotSupportedDialog() {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            `;
+            
+            modal.innerHTML = `
+                <div style="background: white; padding: 30px; border-radius: 15px; max-width: 500px; text-align: center;">
+                    <h3 style="color: #f59e0b; margin-bottom: 15px;">
+                        <i class="fas fa-exclamation-triangle"></i> Browser Not Supported
+                    </h3>
+                    <p style="margin-bottom: 20px; line-height: 1.6;">
+                        Your browser doesn't support automatic file updates. 
+                        <br><br>
+                        <strong>Don't worry!</strong> I'll download the file for you instead.
+                        <br>
+                        Just replace your existing projects.json file with the downloaded one.
+                    </p>
+                    <button onclick="this.parentElement.parentElement.remove(); downloadJSON();" 
+                            style="background: #3b82f6; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; margin-right: 10px;">
+                        <i class="fas fa-download"></i> Download JSON File
+                    </button>
+                    <button onclick="this.parentElement.parentElement.remove();" 
+                            style="background: #6b7280; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;">
+                        Cancel
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+
+        // Show cancelled message
+        function showCancelledMessage() {
+            const msg = document.createElement('div');
+            msg.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #f59e0b;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                z-index: 10000;
+            `;
+            msg.innerHTML = '<i class="fas fa-info-circle"></i> File selection cancelled';
+            document.body.appendChild(msg);
+            setTimeout(() => msg.remove(), 3000);
+        }
+
+        // Show error dialog
+        function showErrorDialog(errorMsg) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            `;
+            
+            modal.innerHTML = `
+                <div style="background: white; padding: 30px; border-radius: 15px; max-width: 500px; text-align: center;">
+                    <h3 style="color: #ef4444; margin-bottom: 15px;">
+                        <i class="fas fa-times-circle"></i> Update Failed
+                    </h3>
+                    <p style="margin-bottom: 20px; line-height: 1.6;">
+                        ${errorMsg}
+                        <br><br>
+                        Would you like to download the file manually instead?
+                    </p>
+                    <button onclick="this.parentElement.parentElement.remove(); downloadJSON();" 
+                            style="background: #3b82f6; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; margin-right: 10px;">
+                        <i class="fas fa-download"></i> Download Instead
+                    </button>
+                    <button onclick="this.parentElement.parentElement.remove();" 
+                            style="background: #6b7280; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;">
+                        Cancel
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+
+        // Show success message
+        function showSuccessMessage(message) {
+            const successDiv = document.createElement('div');
+            successDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #10b981;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                z-index: 10000;
+                max-width: 350px;
+                font-weight: 500;
+            `;
+            successDiv.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+            document.body.appendChild(successDiv);
+            
+            setTimeout(() => {
+                successDiv.remove();
+            }, 5000);
+        }
+
+        // Download JSON file (fallback method)
+        function downloadJSON() {
+            const jsonOutput = document.getElementById('jsonOutput');
+            const jsonData = jsonOutput.textContent;
+            
+            const blob = new Blob([jsonData], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'projects.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            alert('projects.json downloaded! Replace your existing file with this one.');
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('editModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // ===== Skills Editor =====
+        function loadSkills() {
+            renderSkillsList();
+        }
+
+        function getSkillsCategory(key) {
+            if (!siteContent.skills) siteContent.skills = { categories: [] };
+            let cat = siteContent.skills.categories.find(c => c.key === key);
+            if (!cat) {
+                cat = { key, title: key.charAt(0).toUpperCase() + key.slice(1), items: [] };
+                siteContent.skills.categories.push(cat);
+            }
+            return cat;
+        }
+
+        function renderSkillsList() {
+            const select = document.getElementById('skillsCategorySelect');
+            const list = document.getElementById('skillsList');
+            if (!select || !list) return;
+            const key = select.value;
+            const cat = getSkillsCategory(key);
+            list.innerHTML = '';
+            (cat.items || []).forEach((item, idx) => {
+                const chip = document.createElement('div');
+                chip.className = 'skill-chip';
+                chip.innerHTML = `${escapeHtml(item.name)} <button class="remove-btn" onclick="this.parentElement.remove(); arguments[0].stopPropagation();">×</button>`;
+                chip.querySelector('button').addEventListener('click', () => {
+                    cat.items.splice(idx, 1);
+                    updateJSON();
+                    autoSaveChanges();
+                    renderSkillsList();
+                });
+                list.appendChild(chip);
+            });
+        }
+
+        function initializeSkillsEditor() {
+            const select = document.getElementById('skillsCategorySelect');
+            const addBtn = document.getElementById('addSkillBtn');
+            const input = document.getElementById('newSkillInput');
+            if (!select || !addBtn || !input) return;
+
+            // Ensure default categories exist
+            ['frontend','backend','tools','design'].forEach(k => getSkillsCategory(k));
+            renderSkillsList();
+
+            select.addEventListener('change', renderSkillsList);
+            addBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const name = (input.value || '').trim();
+                if (!name) return;
+                const key = select.value;
+                const cat = getSkillsCategory(key);
+                cat.items = cat.items || [];
+                cat.items.push({ name });
+                input.value = '';
+                updateJSON();
+                autoSaveChanges();
+                renderSkillsList();
+            });
+        }
+
+        // Auto-save function with real-time file writing
+        async function autoSaveChanges() {
+            const jsonData = JSON.stringify({ projects: projects, siteContent: siteContent }, null, 2);
+            
+            try {
+                // Update status indicator
+                const statusDiv = document.getElementById('autoSyncStatus');
+                statusDiv.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+                statusDiv.style.background = '#f59e0b';
+                
+                // Write to file using File System Access API or fallback
+                if (window.showSaveFilePicker && fileHandle) {
+                    const writable = await fileHandle.createWritable();
+                    await writable.write(jsonData);
+                    await writable.close();
+                    
+                    // Success feedback
+                    statusDiv.innerHTML = '<i class="fas fa-check"></i> Saved Successfully';
+                    statusDiv.style.background = '#10b981';
+                    
+                } else {
+                    // Fallback: Use localStorage to track changes and show notification
+                    localStorage.setItem('pendingProjectChanges', jsonData);
+                    statusDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Changes Pending';
+                    statusDiv.style.background = '#f59e0b';
+                    
+                    // Show notification for manual save
+                    showPendingChangesNotification();
+                }
+                
+                // Reset status after 2 seconds
+                setTimeout(() => {
+                    statusDiv.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i> Auto-Sync Active';
+                    statusDiv.style.background = '#10b981';
+                }, 2000);
+                
+            } catch (error) {
+                console.error('Auto-save failed:', error);
+                const statusDiv = document.getElementById('autoSyncStatus');
+                statusDiv.innerHTML = '<i class="fas fa-times"></i> Save Failed';
+                statusDiv.style.background = '#ef4444';
+                
+                setTimeout(() => {
+                    statusDiv.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i> Auto-Sync Active';
+                    statusDiv.style.background = '#10b981';
+                }, 3000);
+            }
+        }
+
+        // Show notification for pending changes
+        function showPendingChangesNotification() {
+            // Remove existing notifications
+            const existing = document.querySelector('.pending-notification');
+            if (existing) existing.remove();
+            
+            const notification = document.createElement('div');
+            notification.className = 'pending-notification';
+            notification.style.cssText = `
+                position: fixed;
+                top: 80px;
+                right: 20px;
+                background: #f59e0b;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                z-index: 10000;
+                max-width: 350px;
+                font-weight: 500;
+            `;
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Changes Ready to Save!</span>
+                </div>
+                <button onclick="downloadJSON(); this.parentElement.remove();" 
+                        style="background: white; color: #f59e0b; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.8rem;">
+                    Download Updated JSON
+                </button>
+            `;
+            document.body.appendChild(notification);
+            
+            // Auto-remove after 10 seconds
+            setTimeout(() => {
+                if (notification.parentNode) notification.remove();
+            }, 10000);
+        }
+
+        // Initialize with file selection for auto-sync
+        async function initializeAutoSync() {
+            if (window.showSaveFilePicker) {
+                try {
+                    // Try to get file handle for auto-sync
+                    const statusDiv = document.getElementById('autoSyncStatus');
+                    statusDiv.innerHTML = '<i class="fas fa-folder-open"></i> Select projects.json for auto-sync';
+                    statusDiv.style.background = '#3b82f6';
+                    statusDiv.style.cursor = 'pointer';
+                    
+                    statusDiv.onclick = async () => {
+                        try {
+                            fileHandle = await window.showSaveFilePicker({
+                                suggestedName: 'projects.json',
+                                types: [{
+                                    description: 'JSON files',
+                                    accept: { 'application/json': ['.json'] }
+                                }]
+                            });
+                            
+                            statusDiv.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i> Auto-Sync Active';
+                            statusDiv.style.background = '#10b981';
+                            statusDiv.style.cursor = 'default';
+                            statusDiv.onclick = null;
+                            
+                            showSuccessMessage('Auto-sync enabled! Changes will save automatically.');
+                            
+                        } catch (error) {
+                            if (error.name !== 'AbortError') {
+                                statusDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Manual Mode';
+                                statusDiv.style.background = '#6b7280';
+                            }
+                        }
+                    };
+                } catch (error) {
+                    console.log('Auto-sync not available, using manual mode');
+                }
+            } else {
+                // Browser doesn't support auto-sync
+                const statusDiv = document.getElementById('autoSyncStatus');
+                statusDiv.innerHTML = '<i class="fas fa-download"></i> Manual Mode';
+                statusDiv.style.background = '#6b7280';
+            }
+        }
+
+        // Populate Site Content form values
+        function populateSiteContentForm() {
+            const form = document.getElementById('siteContentForm');
+            if (!form) return;
+            const a = siteContent.about || {};
+            const c = siteContent.company || {};
+            form.about_sectionTitle.value = a.sectionTitle || '';
+            form.about_sectionSubtitle.value = a.sectionSubtitle || '';
+            form.about_introName.value = a.introName || '';
+            form.about_introP1.value = a.introP1 || '';
+            form.about_introP2.value = a.introP2 || '';
+            form.company_name.value = c.name || '';
+            form.company_role.value = c.role || '';
+            form.company_duration.value = c.duration || '';
+            form.company_description.value = c.description || '';
+            form.company_website.value = c.website || '';
+        }
+
+        // Handle Site Content form save
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('saveSiteContentBtn');
+            const form = document.getElementById('siteContentForm');
+            if (btn && form) {
+                btn.addEventListener('click', () => {
+                    siteContent.about = {
+                        sectionTitle: form.about_sectionTitle.value,
+                        sectionSubtitle: form.about_sectionSubtitle.value,
+                        introName: form.about_introName.value,
+                        introP1: form.about_introP1.value,
+                        introP2: form.about_introP2.value
+                    };
+                    siteContent.company = {
+                        name: form.company_name.value,
+                        role: form.company_role.value,
+                        duration: form.company_duration.value,
+                        description: form.company_description.value,
+                        website: form.company_website.value
+                    };
+                    updateJSON();
+                    autoSaveChanges();
+                    showSuccessMessage('Site content saved!');
+                });
+            }
+        });
+
+        // Initialize
+        loadProjects();
+        
+        // Initialize auto-sync after page loads
+        setTimeout(() => {
+            initializeAutoSync();
+        }, 1000);
+
+        // Sidebar nav: smooth scroll and active highlighting
+        const navLinks = document.querySelectorAll('.nav-link[data-target]');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const id = link.getAttribute('data-target');
+                const el = document.getElementById(id);
+                if (el) {
+                    // Switch visible section to the target
+                    showSection(id);
+                    // Immediate active state feedback
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        const sections = [
+            'section-site',
+            'section-projects',
+            'section-json',
+            'section-skills',
+            'section-experience',
+            'section-education',
+            'section-testimonials',
+            'section-faq',
+            'section-contact',
+            'section-pricing',
+            'section-certificates'
+        ].map(id => document.getElementById(id)).filter(Boolean);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                const link = document.querySelector(`.nav-link[data-target="${id}"]`);
+                if (!link) return;
+                if (entry.isIntersecting) {
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                }
+            });
+        }, { root: null, rootMargin: '0px 0px -60% 0px', threshold: 0.3 });
+
+        sections.forEach(sec => observer.observe(sec));
+
+        // Show only one section at a time (tab-like behavior)
+        function showSection(id) {
+            const container = document.querySelector('.admin-content');
+            const all = container ? container.querySelectorAll('.section, .content-section') : [];
+            all.forEach(sec => {
+                if (sec.id === id) {
+                    sec.style.display = 'block';
+                    sec.classList.add('active');
+                } else {
+                    sec.style.display = 'none';
+                    sec.classList.remove('active');
+                }
+            });
+            // Scroll container to top for better UX
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Default visible section on load
+        document.addEventListener('DOMContentLoaded', () => {
+            // If URL hash matches a section, open it; else open Site Content
+            const hash = (location.hash || '').replace('#','');
+            const defaultId = sections.find(s => s.id === hash)?.id || 'section-site';
+            showSection(defaultId);
+            const link = document.querySelector(`.nav-link[data-target="${defaultId}"]`);
+            if (link) link.classList.add('active');
+        });
+    </script>
+</body>
+</html>

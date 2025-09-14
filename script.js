@@ -186,11 +186,14 @@ function initializeApp() {
     // Initialize loading screen
     new LoadingManager();
     
+    // Initialize portfolio manager
+    portfolioManager = new PortfolioManager();
+    
     // Initialize skills filter functionality
     initializeSkillsFilter();
     // Initialize FAQ accordion
     initializeFAQ();
-    // Initialize Projects see more
+    // Initialize Projects see more (will be re-initialized by portfolio manager)
     initializeProjectsSeeMore();
 }
 
@@ -365,6 +368,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // Hydrate site content (About, Company) from projects.json
+    hydrateSiteContent();
 });
 
 // Navbar scroll effect
@@ -454,6 +460,359 @@ class ScrollAnimationManager {
 document.addEventListener('DOMContentLoaded', () => {
     new ScrollAnimationManager();
 });
+
+// Populate About and Company sections from JSON
+async function hydrateSiteContent() {
+    try {
+        const res = await fetch('./projects.json');
+        if (!res.ok) return;
+        const data = await res.json();
+        const sc = data.siteContent || {};
+
+        // About
+        const about = sc.about || {};
+        const aboutTitle = document.getElementById('aboutTitle');
+        const aboutSubtitle = document.getElementById('aboutSubtitle');
+        const aboutIntroName = document.getElementById('aboutIntroName');
+        const aboutP1 = document.getElementById('aboutP1');
+        const aboutP2 = document.getElementById('aboutP2');
+        if (aboutTitle && about.sectionTitle) {
+            // Preserve span highlighting for the word Me
+            aboutTitle.innerHTML = `${about.sectionTitle.replace('Me', '<span class="highlight-text">Me</span>')}`;
+        }
+        if (aboutSubtitle && about.sectionSubtitle) aboutSubtitle.textContent = about.sectionSubtitle;
+        if (aboutIntroName && about.introName) aboutIntroName.textContent = about.introName;
+        if (aboutP1 && about.introP1) aboutP1.textContent = about.introP1;
+        if (aboutP2 && about.introP2) aboutP2.textContent = about.introP2;
+
+        // Company
+        const company = sc.company || {};
+        const companyName = document.getElementById('companyName');
+        const companyRole = document.getElementById('companyRole');
+        const companyDuration = document.getElementById('companyDuration');
+        const companyDescription = document.getElementById('companyDescription');
+        const companyWebsite = document.getElementById('companyWebsite');
+        if (companyName && company.name) companyName.textContent = company.name;
+        if (companyRole && company.role) companyRole.textContent = company.role;
+        if (companyDuration && company.duration) companyDuration.textContent = company.duration;
+        if (companyDescription && company.description) companyDescription.textContent = company.description;
+        if (companyWebsite && company.website) companyWebsite.href = company.website;
+
+        // Skills
+        const skills = sc.skills || {};
+        const grid = document.querySelector('.skills-grid');
+        if (grid && Array.isArray(skills.categories)) {
+            grid.innerHTML = '';
+            skills.categories.forEach(cat => {
+                const key = cat.key || 'tools';
+                (cat.items || []).forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'skill-card';
+                    card.setAttribute('data-category', key);
+                    const initials = (item.name || '?').slice(0,2).toUpperCase();
+                    const hasImage = !!item.image;
+                    const forceInvert = !!item.forceInvert;
+                    const safeInitials = escapeHtml(initials);
+                    const imgOnError = `
+                        if (this.dataset && this.dataset.fallback) {
+                            const fb = this.dataset.fallback; this.dataset.fallback=''; this.src = fb; return;
+                        }
+                        this.onerror=null; const p=this.parentElement; p.classList.remove('has-image'); p.innerHTML='<span class=\\'js-text\\'>${safeInitials}</span>';
+                    `;
+                    const iconInner = hasImage
+                        ? `<img class="${forceInvert ? 'invert-logo' : ''}" src="${escapeHtml(item.image)}" alt="${escapeHtml(item.name || '')} logo" onerror="${imgOnError}" data-fallback="${escapeHtml(item.imageFallback || '')}">`
+                        : `<span class="js-text">${safeInitials}</span>`;
+                    card.innerHTML = `
+                        <div class="skill-icon ${key}${hasImage ? ' has-image' : ''}" data-initials="${safeInitials}">
+                            ${iconInner}
+                        </div>
+                        <h3>${item.name || ''}</h3>
+                    `;
+                    grid.appendChild(card);
+                });
+            });
+            // Re-init filters for new nodes
+            initializeSkillsFilter();
+        }
+
+        // Education (Formal timeline)
+        const eduList = Array.isArray(sc.education) ? sc.education : [];
+        const formalTab = document.getElementById('formal');
+        if (formalTab) {
+            const timeline = formalTab.querySelector('.education-timeline');
+            if (timeline && eduList.length > 0) {
+                timeline.innerHTML = '';
+                eduList.forEach(item => {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'education-item';
+                    wrapper.innerHTML = `
+                        <div class="education-dot"></div>
+                        <div class="education-card">
+                            <div class="education-header">
+                                <h3>${escapeHtml(item.degree || '')}</h3>
+                                <span class="education-duration">${escapeHtml(item.year || '')}</span>
+                            </div>
+                            <div class="education-institution">
+                                <i class="fas fa-university"></i>
+                                <span>${escapeHtml(item.institution || '')}</span>
+                            </div>
+                            ${Array.isArray(item.highlights) && item.highlights.length > 0 ? `
+                                <div class="education-skills">
+                                    ${item.highlights.map(h => `<span class="skill-tag">${escapeHtml(h)}</span>`).join('')}
+                                </div>
+                            ` : ''}
+                        </div>`;
+                    timeline.appendChild(wrapper);
+                });
+            }
+        }
+
+        // Experience (rebuild experience grid)
+        const expList = Array.isArray(sc.experience) ? sc.experience : [];
+        const experienceGrid = document.querySelector('#experience .experience-grid');
+        if (experienceGrid && expList.length > 0) {
+            // Clear existing experience cards
+            const existingCards = experienceGrid.querySelectorAll('.experience-card');
+            existingCards.forEach(card => card.remove());
+            
+            expList.forEach((exp) => {
+                const card = document.createElement('div');
+                card.className = 'experience-card';
+                card.innerHTML = `
+                    <div class="experience-header">
+                        <div class="experience-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="experience-meta">
+                            <h3>${escapeHtml(exp.title || '')}</h3>
+                            <div class="company-info">
+                                <span class="company">${escapeHtml(exp.company || '')}</span>
+                                <span class="duration">${escapeHtml(exp.duration || '')}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="experience-description">${escapeHtml(exp.description || '')}</p>
+                    ${Array.isArray(exp.skills) && exp.skills.length > 0 ? `
+                        <div class="experience-skills">
+                            ${exp.skills.map(skill => `<span class="skill-tag">${escapeHtml(skill)}</span>`).join('')}
+                        </div>
+                    ` : ''}
+                    ${Array.isArray(exp.achievements) && exp.achievements.length > 0 ? `
+                        <div class="experience-achievements">
+                            ${exp.achievements.map(achievement => `
+                                <div class="achievement-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>${escapeHtml(achievement)}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                `;
+                experienceGrid.appendChild(card);
+            });
+        }
+
+        // Pricing (rebuild pricing grid)
+        const pricingList = Array.isArray(sc.pricing) ? sc.pricing : [];
+        const pricingGrid = document.querySelector('#pricing .pricing-grid');
+        if (pricingGrid && pricingList.length > 0) {
+            // Clear existing pricing cards
+            const existingCards = pricingGrid.querySelectorAll('.pricing-card');
+            existingCards.forEach(card => card.remove());
+            
+            pricingList.forEach((plan) => {
+                const card = document.createElement('div');
+                card.className = `pricing-card${plan.featured ? ' featured' : ''}`;
+                card.innerHTML = `
+                    <div class="pricing-header">
+                        <h3 class="plan-name">${escapeHtml(plan.name || '')}</h3>
+                        <p class="plan-description">${escapeHtml(plan.description || '')}</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price">${escapeHtml(plan.price || '')}</span>
+                        <span class="period">${escapeHtml(plan.period || '')}</span>
+                    </div>
+                    <ul class="pricing-features">
+                        ${Array.isArray(plan.features) ? plan.features.map(feature => 
+                            `<li><i class="fas fa-check"></i>${escapeHtml(feature)}</li>`
+                        ).join('') : ''}
+                    </ul>
+                    <button class="pricing-btn">BUY NOW</button>
+                `;
+                pricingGrid.appendChild(card);
+            });
+        }
+
+        // Contact (update contact info)
+        const contact = sc.contact || {};
+        const contactTitle = document.querySelector('#contact .section-title');
+        const contactSubtitle = document.querySelector('#contact .section-subtitle');
+        const contactEmail = document.querySelector('#contact .contact-details p');
+        const contactPhone = document.querySelectorAll('#contact .contact-details p')[1];
+        const contactLocation = document.querySelectorAll('#contact .contact-details p')[2];
+        
+        if (contactTitle && contact.title) contactTitle.innerHTML = contact.title;
+        if (contactSubtitle && contact.subtitle) contactSubtitle.textContent = contact.subtitle;
+        if (contactEmail && contact.email) contactEmail.textContent = contact.email;
+        if (contactPhone && contact.phone) contactPhone.textContent = contact.phone;
+        if (contactLocation && contact.location) contactLocation.textContent = contact.location;
+
+        // FAQ (rebuild FAQ list)
+        const faqList = Array.isArray(sc.faq) ? sc.faq : [];
+        const faqContainer = document.querySelector('#faq .faq-list');
+        if (faqContainer && faqList.length > 0) {
+            // Clear existing FAQ items
+            const existingItems = faqContainer.querySelectorAll('.faq-item');
+            existingItems.forEach(item => item.remove());
+            
+            faqList.forEach((faq) => {
+                const item = document.createElement('div');
+                item.className = 'faq-item';
+                item.innerHTML = `
+                    <button class="faq-question">
+                        <span><i class="${escapeHtml(faq.icon || 'fas fa-question')}"></i> ${escapeHtml(faq.question || '')}</span>
+                        <i class="fas fa-chevron-down caret"></i>
+                    </button>
+                    <div class="faq-answer">
+                        ${escapeHtml(faq.answer || '')}
+                    </div>
+                `;
+                faqContainer.appendChild(item);
+            });
+            
+            // Re-initialize FAQ interactions
+            initializeFaqInteractions();
+        }
+
+        // Testimonials (rebuild testimonials grid)
+        const testimonialsList = Array.isArray(sc.testimonials) ? sc.testimonials : [];
+        const testimonialsGrid = document.querySelector('#testimonials .testimonial-grid');
+        if (testimonialsGrid && testimonialsList.length > 0) {
+            // Clear existing testimonials
+            const existingCards = testimonialsGrid.querySelectorAll('.testimonial-card');
+            existingCards.forEach(card => card.remove());
+            
+            testimonialsList.forEach((testimonial) => {
+                const card = document.createElement('div');
+                card.className = 'testimonial-card';
+                card.innerHTML = `
+                    <div class="testimonial-header">
+                        <div class="avatar">${escapeHtml(testimonial.avatar || 'NA')}</div>
+                        <div class="meta">
+                            <h4>${escapeHtml(testimonial.name || '')}</h4>
+                            <span>${escapeHtml(testimonial.position || '')}</span>
+                        </div>
+                        <div class="rating">
+                            ${generateStarsForPortfolio(testimonial.rating || 5)}
+                        </div>
+                    </div>
+                    <p class="testimonial-text">${escapeHtml(testimonial.text || '')}</p>
+                `;
+                testimonialsGrid.appendChild(card);
+            });
+        }
+
+        // Certificates (rebuild certificates grid)
+        const certList = Array.isArray(sc.certificates) ? sc.certificates : [];
+        const certificatesGrid = document.querySelector('#certificates .certificates-grid');
+        if (certificatesGrid && certList.length > 0) {
+            // Clear existing certificates but keep structure
+            const existingCards = certificatesGrid.querySelectorAll('.certificate-card');
+            existingCards.forEach(card => card.remove());
+            
+            certList.forEach((cert, index) => {
+                const card = document.createElement('div');
+                card.className = index >= 3 ? 'certificate-card hidden-certificate' : 'certificate-card';
+                card.innerHTML = `
+                    <div class="certificate-image" onclick="openCertificateModal('${escapeHtml(cert.image || '')}', '${escapeHtml(cert.title || '')}', '${escapeHtml(cert.issuer || '')}', '${escapeHtml(cert.year || '')}')">
+                        <img src="${escapeHtml(cert.image || '')}" alt="${escapeHtml(cert.title || '')} Certificate" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="image-placeholder" style="display: none;">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i>
+                            Quick View
+                        </button>
+                    </div>
+                    <h3>${escapeHtml(cert.title || '')}</h3>
+                    <p class="certificate-issuer">${escapeHtml(cert.issuer || '')}</p>
+                `;
+                certificatesGrid.appendChild(card);
+            });
+            
+            // Re-initialize certificate interactions if needed
+            initializeCertificateInteractions();
+        }
+    } catch (e) {
+        console.warn('Failed to hydrate site content:', e);
+    }
+}
+
+// Utility function to escape HTML
+function escapeHtml(str) {
+    return String(str || '').replace(/[&<>"']/g, function(match) {
+        const escapeMap = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+        };
+        return escapeMap[match];
+    });
+}
+
+// Generate stars for portfolio testimonials
+function generateStarsForPortfolio(rating) {
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
+    let stars = '';
+    
+    for (let i = 0; i < fullStars; i++) {
+        stars += '<i class="fas fa-star"></i>';
+    }
+    
+    if (hasHalfStar) {
+        stars += '<i class="fas fa-star-half-alt"></i>';
+    }
+    
+    const emptyStars = 5 - Math.ceil(rating);
+    for (let i = 0; i < emptyStars; i++) {
+        stars += '<i class="far fa-star"></i>';
+    }
+    
+    return stars;
+}
+
+// Initialize certificate interactions (if certificates section has interactive elements)
+function initializeCertificateInteractions() {
+    // Re-bind any certificate-specific event listeners if needed
+    // This function can be expanded based on existing certificate functionality
+}
+
+// Initialize FAQ interactions
+function initializeFaqInteractions() {
+    // Re-bind FAQ accordion functionality
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', function() {
+            const faqItem = this.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const caret = this.querySelector('.caret');
+            
+            // Toggle active state
+            faqItem.classList.toggle('active');
+            
+            // Toggle answer visibility
+            if (faqItem.classList.contains('active')) {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                caret.style.transform = 'rotate(180deg)';
+            } else {
+                answer.style.maxHeight = '0';
+                caret.style.transform = 'rotate(0deg)';
+            }
+        });
+    });
+}
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -878,6 +1237,198 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// Dynamic Portfolio Management System
+class PortfolioManager {
+    constructor() {
+        this.projects = [];
+        this.portfolioGrid = document.querySelector('.portfolio-grid');
+        this.init();
+    }
+
+    async init() {
+        try {
+            await this.loadProjects();
+            this.renderProjects();
+        } catch (error) {
+            console.error('Error loading projects:', error);
+            // Fallback to existing HTML if JSON fails
+        }
+    }
+
+    async loadProjects() {
+        try {
+            const response = await fetch('./projects.json');
+            if (!response.ok) throw new Error('Failed to load projects');
+            const data = await response.json();
+            this.projects = data.projects;
+        } catch (error) {
+            console.error('Error fetching projects:', error);
+            throw error;
+        }
+    }
+
+    renderProjects() {
+        if (!this.portfolioGrid || this.projects.length === 0) return;
+
+        // Clear existing projects (keep only the container structure)
+        this.portfolioGrid.innerHTML = '';
+
+        this.projects.forEach((project, index) => {
+            if (!project.visible) return;
+
+            const projectElement = this.createProjectElement(project, index);
+            this.portfolioGrid.appendChild(projectElement);
+        });
+
+        // Re-initialize project interactions after rendering
+        this.initializeProjectInteractions();
+    }
+
+    createProjectElement(project, index) {
+        const isHidden = !project.featured;
+        const statusClass = project.status === 'completed' ? 'completed' : 
+                           project.status === 'in-progress' ? 'in-progress' : 'pending';
+
+        const projectDiv = document.createElement('div');
+        projectDiv.className = `portfolio-item${isHidden ? ' hidden-project' : ''}`;
+        
+        projectDiv.innerHTML = `
+            <div class="portfolio-image">
+                <img
+                    class="portfolio-img"
+                    src="${project.image}"
+                    srcset=""
+                    sizes="${project.image.startsWith('http') ? '(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 400px' : '100vw'}"
+                    alt="${project.alt}"
+                    loading="lazy"
+                    decoding="async"
+                    width="1200" height="750"
+                    referrerpolicy="no-referrer"
+                    onerror="this.onerror=null; this.src='analytics-dashboard.svg'; this.srcset='';"
+                >
+                <div class="portfolio-overlay">
+                    <div class="portfolio-overlay-content">
+                        <div class="portfolio-stats">
+                            ${project.stats.map(stat => `
+                                <div class="stat-item">
+                                    <span class="stat-value">${stat.value}</span>
+                                    <span class="stat-label">${stat.label}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <a href="${project.links.demo}" target="_blank" rel="noopener" class="portfolio-btn">View Project</a>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-content">
+                <div class="portfolio-header">
+                    <h3>${project.title}</h3>
+                    <div class="portfolio-status">
+                        <span class="status-badge ${statusClass}">${this.formatStatus(project.status)}</span>
+                    </div>
+                </div>
+                <p>${project.description}</p>
+                <div class="portfolio-tags">
+                    ${project.tags.map(tag => `<span class="tech-tag">${tag}</span>`).join('')}
+                </div>
+                <div class="portfolio-footer">
+                    <div class="project-duration">
+                        <i class="fas fa-clock"></i>
+                        <span>${project.duration}</span>
+                    </div>
+                    <div class="project-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-actions">
+                    <a class="project-cta" href="${project.links.demo}" target="_blank" rel="noopener">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Visit Project</span>
+                    </a>
+                </div>
+            </div>
+        `;
+
+        return projectDiv;
+    }
+
+    formatStatus(status) {
+        switch(status) {
+            case 'completed': return 'Completed';
+            case 'in-progress': return 'In Progress';
+            case 'pending': return 'Pending';
+            default: return 'Unknown';
+        }
+    }
+
+    initializeProjectInteractions() {
+        // Re-initialize hover effects
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        portfolioItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const image = item.querySelector('.portfolio-image');
+                if (image) image.style.transform = 'scale(1.05)';
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                const image = item.querySelector('.portfolio-image');
+                if (image) image.style.transform = 'scale(1)';
+            });
+        });
+
+        // Re-initialize see more functionality
+        initializeProjectsSeeMore();
+    }
+
+    // Admin functions for updating projects
+    async updateProject(projectId, updates) {
+        const projectIndex = this.projects.findIndex(p => p.id === projectId);
+        if (projectIndex === -1) return false;
+
+        this.projects[projectIndex] = { ...this.projects[projectIndex], ...updates };
+        this.renderProjects();
+        
+        // In a real application, you would save to server here
+        console.log('Project updated:', this.projects[projectIndex]);
+        return true;
+    }
+
+    async addProject(projectData) {
+        const newId = Math.max(...this.projects.map(p => p.id)) + 1;
+        const newProject = { id: newId, ...projectData };
+        this.projects.push(newProject);
+        this.renderProjects();
+        
+        console.log('Project added:', newProject);
+        return newProject;
+    }
+
+    async deleteProject(projectId) {
+        const projectIndex = this.projects.findIndex(p => p.id === projectId);
+        if (projectIndex === -1) return false;
+
+        this.projects.splice(projectIndex, 1);
+        this.renderProjects();
+        
+        console.log('Project deleted:', projectId);
+        return true;
+    }
+
+    // Get projects data for admin interface
+    getProjects() {
+        return this.projects;
+    }
+}
+
+// Global portfolio manager instance
+let portfolioManager;
 
 // Project Modal System
 function showProjectModal(projectIndex) {

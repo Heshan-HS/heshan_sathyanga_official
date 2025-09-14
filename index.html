@@ -124,8 +124,8 @@
     <section id="about" class="about">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">About <span class="highlight-text">Me</span></h2>
-                <p class="section-subtitle">Software engineer and graphic designer crafting digital experiences</p>
+                <h2 class="section-title" id="aboutTitle">About <span class="highlight-text">Me</span></h2>
+                <p class="section-subtitle" id="aboutSubtitle">Software engineer and graphic designer crafting digital experiences</p>
             </div>
             <div class="about-content">
                 <div class="about-intro">
@@ -135,9 +135,9 @@
                         </div>
                     </div>
                     <div class="intro-text">
-                        <h3>Hi, I'm Heshan Sathyanga</h3>
-                        <p>A passionate software engineer and graphic designer with expertise in modern web technologies and visual design. I love creating scalable, user-focused applications and compelling visual identities that solve real-world problems. With a strong foundation in both technical development and creative design, I bring ideas to life through clean code and stunning visuals.</p>
-                        <p>When I'm not coding or designing, you'll find me exploring new technologies, creating digital art, contributing to open-source projects, or sharing knowledge with the developer community.</p>
+                        <h3 id="aboutIntroName">Hi, I'm Heshan Sathyanga</h3>
+                        <p id="aboutP1">A passionate software engineer and graphic designer with expertise in modern web technologies and visual design. I love creating scalable, user-focused applications and compelling visual identities that solve real-world problems. With a strong foundation in both technical development and creative design, I bring ideas to life through clean code and stunning visuals.</p>
+                        <p id="aboutP2">When I'm not coding or designing, you'll find me exploring new technologies, creating digital art, contributing to open-source projects, or sharing knowledge with the developer community.</p>
                     </div>
                 </div>
                   <div class="about-stats">
@@ -221,17 +221,17 @@
                             </div>
                         </div>
                         <div class="company-info">
-                            <h3 class="company-name">SoftCode</h3>
-                            <p class="company-role">Senior Full-Stack Developer</p>
+                            <h3 class="company-name" id="companyName">SoftCode</h3>
+                            <p class="company-role" id="companyRole">Senior Full-Stack Developer</p>
                             <div class="company-duration">
                                 <i class="fas fa-calendar-alt"></i>
-                                <span>2022 - Present</span>
+                                <span id="companyDuration">2022 - Present</span>
                             </div>
                         </div>
                     </div>
                     
                     <div class="company-description">
-                        <p>Transforming ideas into powerful digital solutions. We empower businesses with cutting-edge software that drives innovation, efficiency, and growth.</p>
+                        <p id="companyDescription">Transforming ideas into powerful digital solutions. We empower businesses with cutting-edge software that drives innovation, efficiency, and growth.</p>
                     </div>
                     
                     <!-- Expertise badges row -->
@@ -258,7 +258,7 @@
                     </div>
                     
                     <div class="company-actions">
-                        <a href="https://heshan-hs.github.io/softwarecompany/" target="_blank" class="company-website-btn">
+                        <a id="companyWebsite" href="https://heshan-hs.github.io/softwarecompany/" target="_blank" class="company-website-btn">
                             <i class="fas fa-external-link-alt"></i>
                             <span>Visit Company Website</span>
                         </a>
@@ -618,48 +618,49 @@
                     <div class="portfolio-image">
                         <img
                             class="portfolio-img"
-                            src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=1200&q=80"
-                            srcset="https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=600&q=70 600w, https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=900&q=75 900w, https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=1200&q=80 1200w"
+                            src="Screenshot 2025-09-14 102830.png"
+                            srcset=""
                             sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 400px"
-                            alt="Fitness tracking mobile app on smartphone showing health stats"
+                            alt="Crypto Analyzer Pro dashboard showing cryptocurrency market data and analytics"
                             loading="lazy"
+                            decoding="async"
                             width="1200" height="750"
                             referrerpolicy="no-referrer"
-                            onerror="this.onerror=null; this.src='fitness-app.svg'; this.srcset='';"
+                            onerror="this.onerror=null; this.src='analytics-dashboard.svg'; this.srcset='';"
                         >
                         <div class="portfolio-overlay">
                             <div class="portfolio-overlay-content">
                                 <div class="portfolio-stats">
                                     <div class="stat-item">
-                                        <span class="stat-value">4.8★</span>
-                                        <span class="stat-label">App Store</span>
+                                        <span class="stat-value">95%</span>
+                                        <span class="stat-label">Accuracy</span>
                                     </div>
                                     <div class="stat-item">
-                                        <span class="stat-value">100K+</span>
-                                        <span class="stat-label">Downloads</span>
+                                        <span class="stat-value">Real-time</span>
+                                        <span class="stat-label">Data</span>
                                     </div>
                                 </div>
-                                <a href="#" class="portfolio-btn">View Project</a>
+                                <a href="https://heshan-hs.github.io/crypto_analizer/" target="_blank" rel="noopener" class="portfolio-btn">View Project</a>
                             </div>
                         </div>
                     </div>
                     <div class="portfolio-content">
                         <div class="portfolio-header">
-                            <h3>Fitness Tracking App</h3>
+                            <h3>Crypto Analyzer Pro</h3>
                             <div class="portfolio-status">
                                 <span class="status-badge in-progress">In Progress</span>
                             </div>
                         </div>
-                        <p>Cross-platform fitness app with AI-powered workout recommendations and progress tracking.</p>
+                        <p>Comprehensive cryptocurrency analysis platform with AI insights, portfolio tracking, market heatmaps, and real-time price alerts.</p>
                         <div class="portfolio-tags">
-                            <span class="tech-tag">React Native</span>
-                            <span class="tech-tag">Firebase</span>
-                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">API Integration</span>
+                            <span class="tech-tag">Real-time Data</span>
                         </div>
                         <div class="portfolio-footer">
                             <div class="project-duration">
                                 <i class="fas fa-clock"></i>
-                                <span>5 months</span>
+                                <span>2 months</span>
                             </div>
                             <div class="project-rating">
                                 <div class="stars">
@@ -672,7 +673,7 @@
                             </div>
                         </div>
                         <div class="portfolio-actions">
-                            <a class="project-cta" href="#" target="_blank" rel="noopener">
+                            <a class="project-cta" href="https://heshan-hs.github.io/crypto_analizer/" target="_blank" rel="noopener">
                                 <i class="fas fa-external-link-alt"></i>
                                 <span>Visit Project</span>
                             </a>
@@ -1727,7 +1728,9 @@
                             <h3>Certificate of Grade 5 Scholarship Examination</h3>
                             <p class="certificate-issuer">DEPARTMENT OF EXAMINATIONS</p>
                         </div>
-                        
+                    </div>
+                    
+                    <div class="certificates-grid hidden-certificates-grid">
                         <!-- Additional Rows (Hidden Initially) -->
                         <div class="certificate-card hidden-certificate">
                             <div class="certificate-image" onclick="openCertificateModal('images/certificates/aws-cloud-practitioner.jpg', 'AWS Cloud Practitioner', 'Amazon Web Services', '2024')">
@@ -1800,6 +1803,7 @@
                         </div>
                     </div>
                     
+                    <!-- See More Button moved below all rows -->
                     <div class="certificates-actions">
                         <button class="see-more-btn" id="certificatesSeeMore">
                             <span class="btn-text">See More</span>

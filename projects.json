@@ -1,0 +1,454 @@
+{
+    "projects": [
+      {
+        "title": "SoftCode – Software Company",
+        "description": "Next-level software solutions website showcasing services, expertise, and a modern company brand.",
+        "image": "Screenshot 2025-09-09 220105.png",
+        "alt": "SoftCode – Software Company preview",
+        "status": "completed",
+        "duration": "3 months",
+        "tags": [
+          "Web",
+          "Mobile",
+          "Cloud"
+        ],
+        "stats": [
+          {
+            "value": "95%",
+            "label": "Quality"
+          },
+          {
+            "value": "100%",
+            "label": "Satisfaction"
+          }
+        ],
+        "links": {
+          "demo": "https://heshan-hs.github.io/softwarecompany/",
+          "github": ""
+        },
+        "featured": true,
+        "visible": true,
+        "id": 1
+      },
+      {
+        "id": 2,
+        "title": "MovieVerse Hub",
+        "description": "Discover movies, explore genres, and watch trailers in a clean, responsive UI.",
+        "image": "Screenshot 2025-09-09 220641.png",
+        "alt": "MovieVerse Hub website preview",
+        "status": "completed",
+        "duration": "4 months",
+        "tags": [
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ],
+        "stats": [
+          {
+            "value": "95%",
+            "label": "Accuracy"
+          },
+          {
+            "value": "24/7",
+            "label": "Uptime"
+          }
+        ],
+        "links": {
+          "demo": "https://heshan-hs.github.io/movieversehub/index.html",
+          "github": ""
+        },
+        "featured": true,
+        "visible": true
+      },
+      {
+        "id": 3,
+        "title": "Bugatti Official Concept",
+        "description": "High-end automotive concept site with hyper-realistic visuals, performance specs, and luxury brand UI.",
+        "image": "Screenshot 2025-09-09 220801.png",
+        "alt": "Bugatti Official Concept website preview",
+        "status": "completed",
+        "duration": "6 months",
+        "tags": [
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ],
+        "stats": [
+          {
+            "value": "10K+",
+            "label": "Students"
+          },
+          {
+            "value": "99%",
+            "label": "Satisfaction"
+          }
+        ],
+        "links": {
+          "demo": "https://heshan-hs.github.io/bugatti-official/index.html",
+          "github": ""
+        },
+        "featured": true,
+        "visible": true
+      },
+      {
+        "id": 4,
+        "title": "Crypto Analyzer Pro",
+        "description": "Comprehensive cryptocurrency analysis platform with AI insights, portfolio tracking, market heatmaps, and real-time price alerts.",
+        "image": "Screenshot 2025-09-14 102830.png",
+        "alt": "Crypto Analyzer Pro dashboard showing cryptocurrency market data and analytics",
+        "status": "in-progress",
+        "duration": "2 months",
+        "tags": [
+          "JavaScript",
+          "API Integration",
+          "Real-time Data"
+        ],
+        "stats": [
+          {
+            "value": "95%",
+            "label": "Accuracy"
+          },
+          {
+            "value": "Real-time",
+            "label": "Data"
+          }
+        ],
+        "links": {
+          "demo": "https://heshan-hs.github.io/crypto_analizer/",
+          "github": ""
+        },
+        "featured": false,
+        "visible": true
+      },
+      {
+        "id": 5,
+        "title": "DevTools – AI Applications",
+        "description": "All-in-one online AI and developer tools with a clean, fast UI. Includes translator, chatbot, JSON formatter, color picker, and more.",
+        "image": "Screenshot 2025-09-09 220910.png",
+        "alt": "DevTools – AI Applications website preview",
+        "status": "completed",
+        "duration": "8 months",
+        "tags": [
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ],
+        "stats": [
+          {
+            "value": "85%",
+            "label": "Efficiency"
+          },
+          {
+            "value": "24/7",
+            "label": "Active"
+          }
+        ],
+        "links": {
+          "demo": "https://heshan-hs.github.io/ai-apllication/",
+          "github": ""
+        },
+        "featured": false,
+        "visible": true
+      },
+      {
+        "id": 6,
+        "title": "Cybersecurity Suite",
+        "description": "Enterprise-grade cybersecurity solution with threat detection and incident response automation.",
+        "image": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1400&q=85",
+        "alt": "Cybersecurity Suite preview",
+        "status": "in-progress",
+        "duration": "12 months",
+        "tags": [
+          "C++",
+          "Blockchain",
+          "Docker"
+        ],
+        "stats": [
+          {
+            "value": "95%",
+            "label": "Quality"
+          },
+          {
+            "value": "100%",
+            "label": "Satisfaction"
+          }
+        ],
+        "links": {
+          "demo": "https://heshan-hs.github.io/heshan_sathyanga_official/",
+          "github": ""
+        },
+        "featured": false,
+        "visible": true
+      }
+    ],
+    "siteContent": {
+      "about": {
+        "sectionTitle": "About Me",
+        "sectionSubtitle": "Software engineer and graphic designer crafting digital experiences",
+        "introName": "Hi, I'm Heshan Sathyanga",
+        "introP1": "A passionate software engineer and graphic designer with expertise in modern web technologies and visual design. I love creating scalable, user-focused applications and compelling visual identities that solve real-world problems. With a strong foundation in both technical development and creative design, I bring ideas to life through clean code and stunning visuals.",
+        "introP2": "When I'm not coding or designing, you'll find me exploring new technologies, creating digital art, contributing to open-source projects, or sharing knowledge with the developer community."
+      },
+      "company": {
+        "name": "SoftCode",
+        "role": "Senior Full-Stack Developer",
+        "duration": "2022 - Present",
+        "description": "Transforming ideas into powerful digital solutions. We empower businesses with cutting-edge software that drives innovation, efficiency, and growth.",
+        "website": "https://heshan-hs.github.io/softwarecompany/"
+      },
+      "skills": {
+        "categories": [
+          {
+            "key": "frontend",
+            "title": "Frontend",
+            "items": [
+              {
+                "name": "HTML5",
+                "image": "https://cdn.simpleicons.org/html5/ffffff"
+              },
+              {
+                "name": "CSS3",
+                "image": "https://cdn.simpleicons.org/css3/ffffff",
+                "imageFallback": "https://unpkg.com/simple-icons@v11/icons/css3.svg",
+                "forceInvert": true
+              },
+              {
+                "name": "JavaScript",
+                "image": "https://cdn.simpleicons.org/javascript/ffffff"
+              },
+              {
+                "name": "React",
+                "image": "https://cdn.simpleicons.org/react/ffffff"
+              },
+              {
+                "name": "TypeScript",
+                "image": "https://cdn.simpleicons.org/typescript/ffffff"
+              }
+            ]
+          },
+          {
+            "key": "backend",
+            "title": "Backend",
+            "items": [
+              {
+                "name": "Node.js",
+                "image": "https://cdn.simpleicons.org/nodedotjs/ffffff"
+              },
+              {
+                "name": "SQL",
+                "image": "https://cdn.simpleicons.org/mysql/ffffff"
+              },
+              {
+                "name": "MongoDB",
+                "image": "https://cdn.simpleicons.org/mongodb/ffffff"
+              }
+            ]
+          },
+          {
+            "key": "tools",
+            "title": "Tools",
+            "items": [
+              {
+                "name": "Git",
+                "image": "https://cdn.simpleicons.org/git/ffffff"
+              },
+              {
+                "name": "Docker",
+                "image": "https://cdn.simpleicons.org/docker/ffffff"
+              }
+            ]
+          },
+          {
+            "key": "design",
+            "title": "Design",
+            "items": [
+              {
+                "name": "Figma",
+                "image": "https://cdn.simpleicons.org/figma/ffffff"
+              },
+              {
+                "name": "Photoshop",
+                "image": "https://cdn.simpleicons.org/adobephotoshop/ffffff",
+                "imageFallback": "https://unpkg.com/simple-icons@v11/icons/adobephotoshop.svg",
+                "forceInvert": true
+              },
+              {
+                "name": "Illustrator",
+                "image": "https://cdn.simpleicons.org/adobeillustrator/ffffff",
+                "imageFallback": "https://unpkg.com/simple-icons@v11/icons/adobeillustrator.svg",
+                "forceInvert": true
+              },
+              {
+                "name": "Canva",
+                "image": "https://cdn.simpleicons.org/canva/ffffff"
+              },
+              {
+                "name": "UI/UX Design",
+                "image": "https://cdn.simpleicons.org/materialdesign/ffffff"
+              }
+            ]
+          }
+        ]
+      },
+      "experience": [
+        {
+          "title": "Lead Full-Stack Developer",
+          "company": "SoftCode Pro",
+          "duration": "2022 - Present",
+          "description": "Architected and delivered scalable web applications, led code reviews, and mentored junior developers in modern development practices.",
+          "skills": [
+            "React",
+            "Next.js",
+            "Node.js",
+            "AWS",
+            "Docker",
+            "CI/CD"
+          ],
+          "achievements": [
+            "Led team of 5 developers",
+            "Improved app performance by 40%",
+            "Delivered 15+ projects on time"
+          ]
+        },
+        {
+          "title": "Full-Stack Engineer",
+          "company": "Freelance",
+          "duration": "2020 - 2022",
+          "description": "Built bespoke solutions for startups including dashboards, e-commerce platforms, and internal tools with focus on performance and user experience.",
+          "skills": [
+            "TypeScript",
+            "Python",
+            "PostgreSQL",
+            "MongoDB",
+            "Testing",
+            "Performance"
+          ],
+          "achievements": [
+            "Completed 25+ client projects",
+            "95% client satisfaction rate",
+            "Built scalable architectures"
+          ]
+        },
+        {
+          "title": "Junior Developer",
+          "company": "Tech Startup",
+          "duration": "2019 - 2020",
+          "description": "Started my professional journey building responsive web applications and learning modern development workflows in an agile environment.",
+          "skills": [
+            "JavaScript",
+            "HTML/CSS",
+            "Git",
+            "Agile",
+            "REST APIs"
+          ],
+          "achievements": [
+            "Contributed to 10+ features",
+            "Learned modern frameworks",
+            "Built responsive interfaces"
+          ]
+        }
+      ],
+      "education": [
+        {
+          "degree": "B.Sc. in Software Engineering",
+          "institution": "Java Institute For Advanced Technology",
+          "year": "2024 - 2028",
+          "highlights": [
+            "Software Engineering",
+            "Algorithms",
+            "Web Development",
+            "Full-Stack"
+          ]
+        },
+        {
+          "degree": "G.C.E. Advanced Level",
+          "institution": "Haliela Central College Badulla",
+          "year": "2022 - 2024",
+          "highlights": [
+            "Technology Stream",
+            "SFT",
+            "ICT",
+            "ET"
+          ]
+        },
+        {
+          "degree": "G.C.E. Ordinary Level",
+          "institution": "B/Uva Science College - Hali-Ela",
+          "year": "2020",
+          "highlights": [
+            "Mathematics",
+            "Science",
+            "English",
+            "Technology"
+          ]
+        }
+      ],
+      "testimonials": [],
+      "faq": [],
+      "contact": {
+        "heading": "",
+        "subtext": "",
+        "email": "",
+        "phone": "",
+        "socials": {}
+      },
+      "pricing": [],
+      "certificates": [
+        {
+          "title": "UWU EXPO 2022 - Exhibition",
+          "issuer": "UWU EXPO",
+          "year": "2022",
+          "image": "IMG_20250806_113154_942.jpg"
+        },
+        {
+          "title": "ALL ISLAND SCHOOL ROBOT COMPETITION",
+          "issuer": "Ministry of Education",
+          "year": "2023",
+          "image": "IMG_20250806_113310_893.jpg"
+        },
+        {
+          "title": "Certificate of Grade 5 Scholarship Examination",
+          "issuer": "DEPARTMENT OF EXAMINATIONS",
+          "year": "2023",
+          "image": "IMG_20250806_113328_879.jpg"
+        },
+        {
+          "title": "ALL ISLAND SCHOOL ROBOT AND INVENTION COMPETITION",
+          "issuer": "Ministry of Education",
+          "year": "2024",
+          "image": "IMG_20250806_113227_017.jpg"
+        },
+        {
+          "title": "Web Application Development",
+          "issuer": "Ministry of Education",
+          "year": "2023",
+          "image": "IMG_20250806_113248_278.jpg"
+        },
+        {
+          "title": "Dhamma School Exam",
+          "issuer": "Dhamma School",
+          "year": "2022",
+          "image": "IMG_20250806_113404_606.jpg"
+        },
+        {
+          "title": "ESOFT METRO CAMPUS is a Pearson Assured organisation",
+          "issuer": "ESOFT METRO CAMPUS",
+          "year": "2023",
+          "image": "IMG_20250806_113437_266.jpg"
+        },
+        {
+          "title": "All Island School Drawing Competition",
+          "issuer": "All Island School",
+          "year": "2022",
+          "image": "IMG_20250806_113502_271.jpg"
+        },
+        {
+          "title": "ART COMPETITION",
+          "issuer": "Se Ian Bank PLC",
+          "year": "2023",
+          "image": "IMG_20250806_113421_212.jpg"
+        }
+      ]
+    }
+  }
+
